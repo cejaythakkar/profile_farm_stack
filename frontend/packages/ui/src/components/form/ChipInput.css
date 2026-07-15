@@ -1,0 +1,21 @@
+@reference "tailwindcss";
+.selectBox-container .selectBox__control {
+
+    @apply bg-transparent px-3 py-1.5 min-h-[50px] border border-gray-400
+}
+.selectBox-container .selectBox__control .selectBox__value-container{
+
+    @apply p-0
+}
+.selectBox-container .selectBox__control .selectBox__multi-value{
+    @apply bg-transparent border border-white
+}
+.selectBox-container .selectBox__control .selectBox__multi-value .selectBox__multi-value__label{
+    @apply text-white
+}
+.selectBox-container .selectBox__menu{
+    @apply bg-white text-gray-900
+}
+.selectBox-container .selectBox__multi-value__remove:hover{
+    @apply bg-blue-700 text-white
+}
