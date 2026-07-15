@@ -6,12 +6,20 @@ from src.routes.SkillsRoute import route as skills_route
 from src.routes.ExperienceRoute import route as experience_route
 from src.routes.PersonalDetails import route as personalDetails_route
 from src.routes.ProfileRoute import route as profile_route
+from dotenv import load_dotenv
+import os
+import json
+
+load_dotenv()
+
+allowed_origin_string = os.getenv("ALLOWED_ORIGIN","[]")
+allowed_origin = json.loads(allowed_origin_string)
 
 
 from fastapi.middleware.cors import CORSMiddleware
 
 server = FastAPI()
-origins = ["http://localhost:4173","http://localhost:5173"]
+origins = allowed_origin
 server.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
