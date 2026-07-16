@@ -3,3 +3,5 @@ venv
 .env
 .env.*
 __pycache__
+environment_variables.txt
+make_env_file.sh
