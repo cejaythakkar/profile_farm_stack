@@ -29,19 +29,30 @@ export default {
         backgroundColor: '#111827 !important',
     },
 
+    '& .MuiDataGrid-columnHeader:hover': {
+        backgroundColor: 'transparent',
+    },
+    
     // 2. Data Row Styling
     '& .MuiDataGrid-row': {
        
         borderBottom: '1px solid #21262d',
         backgroundColor: '#111827',
         '&:hover': {
-            backgroundColor: '#6B7280', // Subtle hover tint for records
+            backgroundColor: 'transparent', // Subtle hover tint for records
         },
     },
+
     '& .MuiDataGrid-cell': {
         fontSize: '0.875rem',
         borderBottom: 'none',
         
+    },
+    '& .MuiDataGrid-row.Mui-selected': {
+        backgroundColor: '#111827'
+    },
+    '& .MuiDataGrid-row.Mui-selected:hover': {
+        backgroundColor: '#111827'
     },
 
     // 3. Pagination Footer Styling

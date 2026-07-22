@@ -12,7 +12,11 @@ route = APIRouter(prefix="/api/v1/skills",tags=["Skills"])
 async def addSkills(skillsData: SkillModel, userId=Depends(get_current_user)):
     skillsData = skillsData.model_dump()
     skillsData["userId"] = userId
-    skillsCollection.insert_one(skillsData)
+    userSkills = await skillsCollection.find_one({"userId":userId})
+    if userSkills is None:
+        skillsCollection.insert_one(skillsData)
+    else:
+        skillsCollection.update_one({"userId":userId},{"$set":skillsData})
     return get_response_object(
         message="Skills added successfuly!", success=True, token=False
     )

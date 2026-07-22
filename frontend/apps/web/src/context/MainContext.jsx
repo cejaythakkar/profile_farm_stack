@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState } from 'react';
-import { axiosClient } from '../utils/axiosClient';
+import axiosClient from '../utils/axiosClient';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
@@ -23,10 +23,10 @@ export const MainContextProvider = ({ children }) => {
         },
       });
       const data = response.data;
-      console.log(data);
+      
       setUser(data.data);
     } catch (error) {
-      console.log(error);
+      
     } finally {
       setLoading(false);
     }

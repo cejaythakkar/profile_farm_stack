@@ -3,7 +3,7 @@ import {useLocation} from 'react-router-dom'
 
 const PageUnderConstruction = () => {
     const location = useLocation() //params
-    console.log(location)
+    
     const pathArr = location.pathname.split("/")
     const pageName = pathArr[pathArr.length - 1]
     const activePage = pageName.charAt(0).toUpperCase() + pageName.slice(1)

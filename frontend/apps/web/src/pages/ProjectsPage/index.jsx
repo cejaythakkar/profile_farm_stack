@@ -95,6 +95,7 @@ const ProjectsPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modelTitle, setModalTitle] = useState('');
   const handleViewClick = (rowData, name) => {
+    
     switch (name) {
       case 'view':
         setModalTitle('View Project');

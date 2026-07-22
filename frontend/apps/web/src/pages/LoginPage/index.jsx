@@ -3,13 +3,13 @@ import { Formik, Form, ErrorMessage, Field } from 'formik';
 import * as yup from 'yup';
 import { FaEye, FaEyeSlash, FaArrowRight } from 'react-icons/fa';
 import { CgSpinner } from 'react-icons/cg';
-import { axiosClient } from '../../utils/axiosClient';
+import  axiosClient  from '../../utils/axiosClient';
 import { toast } from 'react-toastify';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useMainContext } from '../../context/MainContext';
 
 const LoginPage = () => {
-  console.log('login page called');
+  
   const [isHide, setIsHide] = React.useState(true);
 
   const [isLoading, setIsLoading] = React.useState(false);
@@ -26,7 +26,7 @@ const LoginPage = () => {
   };
 
   useEffect(() => {
-    console.log(user, location);
+    
 
     if (user['_id']) {
       navigate(

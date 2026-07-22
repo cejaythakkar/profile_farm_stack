@@ -1,4 +1,4 @@
-import { axiosClient } from './axiosClient'
+import axiosClient from './axiosClient'
 export const fetchData = async ({ url }) => {
     const token = localStorage.getItem('token') || '';
     const response = await axiosClient.get(url, {

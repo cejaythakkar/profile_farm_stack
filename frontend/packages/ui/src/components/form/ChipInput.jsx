@@ -1,5 +1,6 @@
 import React from 'react';
 import CreatableSelect from 'react-select/creatable';
+import { components as selectComponents } from 'react-select';
 import Label from './Label';
 import InputFieldError from './InputFieldError';
 
@@ -7,6 +8,17 @@ import './ChipInput.css';
 
 const components = {
   DropdownIndicator: null,
+  MultiValue: (props) => {
+    return (
+      <div title={props.data.label} className="h-full flex">
+        <selectComponents.MultiValue 
+          {...props}
+          innerProps={{ ...props.innerProps, title: props.data.label }}
+         
+        >{props.children}</selectComponents.MultiValue >
+      </div>
+    );
+  },
 };
 
 export default ({
@@ -18,6 +30,7 @@ export default ({
   setValue,
 }) => {
   const [inputValue, setInputValue] = React.useState('');
+  
   const createOption = (label) => ({
     label,
     value: label,
@@ -33,7 +46,7 @@ export default ({
     }
   };
   return (
-    <div className="mb-3">
+    <div className="flex-col items-center w-full">
       {labelRequired && <Label name={name} text={text} required={required} />}
       <CreatableSelect
         components={components}
@@ -41,12 +54,14 @@ export default ({
         isClearable
         isMulti
         menuIsOpen={false}
-        onChange={(newValue) => {setValue(name,newValue)}}
+        onChange={(newValue) => {
+          setValue(name, newValue);
+        }}
         onInputChange={(newValue) => setInputValue(newValue)}
         onKeyDown={handleKeyDown}
         classNamePrefix="selectBox"
         placeholder="Type something and press enter..."
-        className="selectBox-container w-full rounded outline-none transition-all duration-300 border-gray-400 focus:ring-1 text-white bg-transparent"
+        className="selectBox-container items-center flex w-full rounded outline-none transition-all duration-300 border-gray-400 focus:ring-1 text-white bg-transparent"
         value={value}
       />
       <InputFieldError name={name} />

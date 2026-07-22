@@ -12,6 +12,7 @@ const DynamicList = ({
 }) => {
   const fieldsList = FIELDS_OF_DYNAMIC_LIST[type];
   const [field1, field2] = Object.keys(fieldsList);
+  
   return (
     <div className="flex w-full gapx-4">
       <div className="flex w-full gap-x-4">

@@ -6,7 +6,7 @@ import WithLayout from '../HOC/withLayout'
 const ProtectedLayout = () => {
   const { user, loading } = useMainContext();
   const location = useLocation();
-  console.log(user,location);
+  
   const navigate = useNavigate();
 
   if (loading) {

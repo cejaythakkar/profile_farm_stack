@@ -36,7 +36,15 @@ const customStyles = {
       '0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1)', // Rich dropdown shadow
   },
 };
-const Modal = ({ children, isOpen, setIsOpen, title = 'Update Project' }) => {
+const Modal = ({
+  children,
+  isOpen,
+  setIsOpen,
+  title = 'Update Project',
+  submitButtonTitle = 'Save Changes',
+  showCancelButton = true,
+  submitHandler = () => {},
+}) => {
   return (
     <ReactModal isOpen={isOpen} style={customStyles}>
       {/* Fixed: explicitly added "flex flex-col" to lock the 10%/80%/10% grid proportions */}
@@ -61,20 +69,22 @@ const Modal = ({ children, isOpen, setIsOpen, title = 'Update Project' }) => {
         </div>
 
         {/* --- SCROLLABLE BODY CONTENT --- */}
-        <div className="modal-content flex-1 px-5 py-4 overflow-auto bg-white text-slate-600 text-sm leading-relaxed">
+        <div className="modal-content bg-gray-900 flex-1 overflow-auto text-slate-600 text-sm leading-relaxed">
           {children}
         </div>
 
         {/* --- CLEAN MODAL FOOTER --- */}
         <div className="modal-footer px-5 h-[10%] flex items-center justify-end gap-x-3 bg-slate-50 border-t border-slate-100 rounded-b-xl">
+          {showCancelButton && (
+            <Button
+              text={'Cancel'}
+              clickHandler={() => setIsOpen(false)}
+              color="red"
+            />
+          )}
           <Button
-            text={'Cancel'}
-            clickHandler={() => setIsOpen(false)}
-            color="red"
-          />
-          <Button
-            text={'Save Changes'}
-            clickHandler={() => setIsOpen(false)}
+            text={submitButtonTitle}
+            clickHandler={submitHandler}
             color="blue"
           />
         </div>

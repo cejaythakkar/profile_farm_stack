@@ -23,7 +23,7 @@ const MyDatePicker = ({
           const tempDay = tempDate.getDate();
           const tempMonth = tempDate.getMonth();
           const tempYear = tempDate.getFullYear();
-          // console.log('tempDate', `${tempDay}-${tempMonth + 1}-${tempYear}`);
+          // 
           setSelectedDate(name, `${tempMonth + 1}-${tempDay}-${tempYear}`);
           // setSelectedDate(`${name}_string`, `${tempDay}-${tempMonth + 1}-${tempYear}`);
         }}

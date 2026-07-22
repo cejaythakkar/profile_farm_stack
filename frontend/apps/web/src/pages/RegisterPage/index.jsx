@@ -4,7 +4,7 @@ import { Formik, Form, ErrorMessage, Field } from 'formik';
 import * as yup from 'yup';
 import { FaEye, FaEyeSlash, FaArrowRight } from 'react-icons/fa';
 import { CgSpinner } from 'react-icons/cg';
-import { axiosClient } from '../../utils/axiosClient';
+import axiosClient from '../../utils/axiosClient';
 import { toast } from 'react-toastify';
 import { useMainContext } from '../../context/MainContext';
 import { FormComponents } from 'shared-component-library';

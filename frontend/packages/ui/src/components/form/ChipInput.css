@@ -1,20 +1,30 @@
 @reference "tailwindcss";
 .selectBox-container .selectBox__control {
 
-    @apply bg-transparent px-3 py-1.5 min-h-[50px] border border-gray-400
+    @apply bg-transparent px-3 py-1.5 h-[50px] border border-gray-400 w-full
 }
 .selectBox-container .selectBox__control .selectBox__value-container{
 
-    @apply p-0
+    @apply p-0 h-full items-stretch flex-nowrap grid-rows-[minmax(0,1fr)]
+}
+.selectBox-container .selectBox__control .selectBox__value-container .selectBox__placeholder{
+
+    @apply flex items-center
 }
 .selectBox-container .selectBox__control .selectBox__multi-value{
-    @apply bg-transparent border border-white
+    @apply bg-transparent border border-white flex h-full items-center my-0 mr-1
+}
+.selectBox-container .selectBox__control .selectBox__input-container{
+    @apply h-full flex 
 }
 .selectBox-container .selectBox__control .selectBox__multi-value .selectBox__multi-value__label{
-    @apply text-white
+    @apply text-white flex items-center
 }
 .selectBox-container .selectBox__menu{
     @apply bg-white text-gray-900
+}
+.selectBox-container .selectBox__multi-value__remove{
+    @apply h-full
 }
 .selectBox-container .selectBox__multi-value__remove:hover{
     @apply bg-blue-700 text-white

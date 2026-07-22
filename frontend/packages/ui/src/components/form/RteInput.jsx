@@ -3,8 +3,9 @@ import { ErrorMessage, Field } from 'formik';
 import PropTypes from 'prop-types';
 import Label from './Label';
 import InputFieldError from './InputFieldError';
+import RichTextEditor from './RichTextEditor';
 
-const Input = ({
+const RteInput = ({
   name,
   text,
   type,
@@ -12,24 +13,21 @@ const Input = ({
   required = false,
   noLabel = false,
   hideHandler = () => {},
+  setFieldValue = () => {},
+  innerRef = null,
+  onChange = () => {},
 }) => {
+  console.log('text', text)
   return (
     <div className="mb-3">
       {!noLabel && <Label name={name} text={text} required={required} />}
-      <Field
-        id={name}
-        name={name}
-        type={type}
-        autocomplete="off"
-        className="w-full py-4 px-3 rounded border outline-none transition-all duration-300 border-gray-400 focus:ring-1 h-[50px] box-border text-white"
-        placeholder={placeholder}
-      />
+      <RichTextEditor name={name} innerRef={innerRef} onChange={onChange} />
       <InputFieldError name={name} />
     </div>
   );
 };
 
-Input.propTypes = {
+RteInput.propTypes = {
   name: PropTypes.string.isRequired,
   text: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
@@ -38,4 +36,4 @@ Input.propTypes = {
   required: PropTypes.bool,
 };
 
-export default Input;
+export default RteInput;

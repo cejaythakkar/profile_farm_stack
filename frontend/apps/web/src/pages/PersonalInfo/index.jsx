@@ -6,7 +6,7 @@ import DynamicList from '../../components/DynamicList';
 import FormSection from '../../components/FormSection';
 import { ProfileImage } from '../../../../../packages/ui/src/components';
 import { DYNAMIC_LIST_TYPE } from '../../constants';
-import { axiosClient } from '../../utils/axiosClient';
+import  axiosClient from '../../utils/axiosClient';
 import { fetchData as getData } from '../../utils/api';
 import { useEffect, useState } from 'react';
 import WithLayout from '../../HOC/withLayout';
@@ -100,8 +100,6 @@ const PersonalInfo = () => {
         const formData = new FormData();
         const profileImage = values['profileImage'];
         delete values['profileImage'];
-        console.log(values);
-        console.log('typeof(profileImage)', typeof profileImage, profileImage);
         formData.append('personalDetails', JSON.stringify(values));
         profileImage &&
           typeof profileImage != 'string' &&
@@ -176,7 +174,7 @@ const PersonalInfo = () => {
                       />
                     </div>
 
-                    <div className="w-full px-3">
+                    <div className="w-full px-3 mb-3">
                       <FormComponents.ChipInput
                         name="languagesKnown"
                         text="Languages Known"
@@ -208,12 +206,13 @@ const PersonalInfo = () => {
                             />
                           ))}
                       </div>
+                      
                     </FormSection>
                   )}
                 </FieldArray>
                 <FormSection title="Hobbies">
                   <div className="flex flex-wrap -mx-3 my-3">
-                    <div className="w-full px-3">
+                    <div className="w-full px-3 mb-3">
                       <FormComponents.ChipInput
                         name="hobbies"
                         text="What are you passionate about apart from coding?"

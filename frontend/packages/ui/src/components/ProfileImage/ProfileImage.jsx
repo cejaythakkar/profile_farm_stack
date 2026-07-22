@@ -7,7 +7,7 @@ export default function ProfileImage({
   name,
   profileImageURL,
 }) {
-  console.log('profileImageURL', profileImageURL);
+  
   const [imageSrc, setImageSrc] = useState(profileImageURL || null);
   const fileInputRef = useRef(null);
   useEffect(() => {

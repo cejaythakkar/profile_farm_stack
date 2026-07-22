@@ -9,7 +9,7 @@ const HomePage = () => {
 
     const navigate = useNavigate();
     useEffect(() => {
-        console.log(user)
+        
         user["_id"] ? navigate(`/${user.userName}/personal-info`,{replace: true}) : navigate("/login",{replace: true})
     },[user])
   return null

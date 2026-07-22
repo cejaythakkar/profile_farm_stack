@@ -3,18 +3,17 @@ from src.models.Experience import ExperienceModel
 from src.routes.AuthRoute import get_current_user
 from src.config.db import db
 from src.utils.utils import get_response_object
+import bson
 
 experienceCollection = db["experience"]
-route = APIRouter(prefix="/api/v1/experience",tags=["Experience"])
+route = APIRouter(prefix="/api/v1/experience", tags=["Experience"])
 
 
 @route.post("/")
 async def addExperience(expData: ExperienceModel, userId=Depends(get_current_user)):
     expData = expData.model_dump()
     expData["userId"] = userId
-    expData["formDate"] = expData["formDate"].isoformat()
-    expData["toDate"] = expData["toDate"].isoformat()
-    
+
     experienceCollection.insert_one(expData)
     return get_response_object(
         message="Experience added successfuly!", success=True, token=False
@@ -24,10 +23,51 @@ async def addExperience(expData: ExperienceModel, userId=Depends(get_current_use
 @route.get("/")
 async def getExperience(userId=Depends(get_current_user)):
 
-    expData = await experienceCollection.find_one({"userId": userId})
-    expData["_id"] = str(expData["_id"])
+    cursor = experienceCollection.find({"userId": userId})
+    expData = await cursor.to_list(length=1000)
+    for exp in expData:
+        if "_id" in exp:
+            exp["_id"] = str(exp["_id"])
+
     response = get_response_object(
-        message="skills fetch successfull!", success=True, token=False
+        message="Experiences fetch successfull!", success=True, token=False
     )
     response["data"] = expData
+    return response
+
+@route.put("/{expId}")
+async def getExperience(expId: str,expData: ExperienceModel, userId=Depends(get_current_user)):
+    expObjectId = bson.ObjectId(expId)
+    exp = await experienceCollection.find_one({"_id": expObjectId})
+    print(exp)
+    if exp is None:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND, detail="No such record found"
+        )
+    data_dict = dict(expData)
+    # print(f"data_dict -> {data_dict['_id']}")
+    experienceCollection.update_one({"_id": expObjectId}, {"$set": data_dict})
+
+    response = get_response_object(
+        message="Experience Deleted successfully!", success=True, token=False
+    )
+
+    return response
+
+@route.delete("/{expId}")
+async def getExperience(expId: str, userId=Depends(get_current_user)):
+    expObjectId = bson.ObjectId(expId)
+    exp = await experienceCollection.find_one({"_id": expObjectId})
+    print(exp)
+    if exp is None:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND, detail="No such record found"
+        )
+
+    experienceCollection.find_one_and_delete({"_id": expObjectId})
+
+    response = get_response_object(
+        message="Experience Deleted successfully!", success=True, token=False
+    )
+
     return response
