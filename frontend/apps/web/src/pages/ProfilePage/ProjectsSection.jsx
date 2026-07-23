@@ -1,10 +1,9 @@
 import React from 'react';
+import ProfilePageSection from './ProfilePageSection';
 
 const ProjectsSection = ({ projects }) => {
   return (
-    <section id="projects">
-      <h2 className="text-2xl md:text-3xl font-bold mb-8">Projects</h2>
-
+    <ProfilePageSection id={'projects'} sectionTitle={'Projects'}>
       <div className="space-y-10">
         {projects.map((project) => (
           <div
@@ -168,7 +167,7 @@ const ProjectsSection = ({ projects }) => {
           </div>
         ))}
       </div>
-    </section>
+    </ProfilePageSection>
   );
 };
 

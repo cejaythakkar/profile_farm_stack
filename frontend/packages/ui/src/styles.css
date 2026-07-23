@@ -1,6 +1,10 @@
 @import "tailwindcss";
 @source "./**/*.{js,jsx,ts,tsx}";
 
+@theme {
+  --breakpoint-xs: 400px; /* roughly 480px */
+}
+
 .react-datepicker-wrapper{
     @apply w-full
 }
