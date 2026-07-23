@@ -1,4 +1,5 @@
 export { default as Input } from './Input'
+export { default as CheckBox } from './CheckBox'
 export { default as PasswordInput } from './PasswordInput'
 export { default as ChipInput } from './ChipInput'
 export { default as DatePicker } from './MyDatePicker/MyDatePicker'

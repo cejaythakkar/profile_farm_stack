@@ -10,6 +10,7 @@ load_dotenv()
 usersCollection = db["user"]
 personalDetailsCollection = db["personal-info"]
 experienceCollection = db["experience"]
+projectsCollection = db["projects"]
 skillsCollection = db["skills"]
 route = APIRouter(prefix="/api/v1/profile", tags=["profile"])
 
@@ -37,10 +38,14 @@ async def getProfile(userName: str):
         skills = await skillsCollection.find_one(
             {"userId": userDetails["_id"]}, {"_id": 0}
         )
-        experiences = experienceCollection.find(
+        experience = experienceCollection.find(
             {"userId": userDetails["_id"]}, {"_id": 0}
         )
-        experiences = await experiences.to_list(length=20);
+        experience = await experience.to_list(length=100);
+        projects = projectsCollection.find(
+            {"userId": userDetails["_id"]}, {"_id": 0}
+        )
+        projects = await projects.to_list(length=100);
 
         response = get_response_object(
             message="Personal Details fetched successfull!", success=True, token=False
@@ -49,7 +54,8 @@ async def getProfile(userName: str):
             "userDetails": userDetails,
             "personalDetails": personalDetails,
             "skills": skills,
-            "experiences": experiences,
+            "experiences": experience,
+            "projects": projects,
         }
     except Exception as e:
         # raise HTTPException(500, get_response_object(message="Something went wrong!", success=False, token=False))

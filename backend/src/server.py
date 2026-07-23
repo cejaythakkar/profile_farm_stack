@@ -6,6 +6,7 @@ from src.routes.SkillsRoute import route as skills_route
 from src.routes.ExperienceRoute import route as experience_route
 from src.routes.PersonalDetails import route as personalDetails_route
 from src.routes.ProfileRoute import route as profile_route
+from src.routes.ProjectsRoute import route as projects_route
 from dotenv import load_dotenv
 import os
 import json
@@ -42,3 +43,4 @@ server.include_router(skills_route)
 server.include_router(experience_route)
 server.include_router(personalDetails_route)
 server.include_router(profile_route)
+server.include_router(projects_route)

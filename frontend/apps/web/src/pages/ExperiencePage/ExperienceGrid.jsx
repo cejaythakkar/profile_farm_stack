@@ -3,7 +3,6 @@ import { FormComponents } from 'shared-component-library';
 import { useFormikContext } from 'formik';
 import { DataGrid } from '@mui/x-data-grid';
 import GridStyle from '../ProjectsPage/GridStyle';
-import { getDateString } from '../../utils/dateTime';
 import { useDispatch } from 'react-redux';
 import {
   deleteExperience,
@@ -56,11 +55,7 @@ const ExperienceGrid = ({ remove, actionButtonClickHandler }) => {
             (item) => item.id === params.row.id,
           );
           if (formikIndex === -1) return null;
-          return (
-            <span>
-             {values.experiences[formikIndex]?.fromDate}
-            </span>
-          );
+          return <span>{values.experiences[formikIndex]?.fromDate}</span>;
         },
       },
       {
@@ -75,9 +70,7 @@ const ExperienceGrid = ({ remove, actionButtonClickHandler }) => {
           if (formikIndex === -1) return null;
 
           return (
-            <span>
-              {values.experiences[formikIndex]?.toDate || 'Present'}
-            </span>
+            <span>{values.experiences[formikIndex]?.toDate || 'Present'}</span>
           );
         },
       },
@@ -164,6 +157,15 @@ const ExperienceGrid = ({ remove, actionButtonClickHandler }) => {
         rowSelection={false}
         disableColumnSorting={true}
         disableColumnFilter={true}
+        initialState={{
+          pagination: {
+            paginationModel: {
+              page: 0,
+              pageSize: 5, // 👈 This will force it to split 7 rows into 2 pages
+            },
+          },
+        }}
+        pageSizeOptions={[5, 10, 20]}
         sx={GridStyle}
         onCellKeyDown={(params, event) => {
           const isInput =
