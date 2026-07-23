@@ -47,14 +47,14 @@ export default function ProfilePage() {
 
       <MobileNavigation sections={sections} />
 
-      <div className="max-w-7xl mx-auto grid grid-cols-12 gap-10 py-10">
+      <div className="max-w-7xl mx-auto lg:grid lg:grid-cols-12 gap-10 py-10">
         {/* SIDEBAR */}
 
         <Sidebar sections={sections} />
 
         {/* CONTENT */}
 
-        <main className="sm:px-5 col-span-12 lg:col-span-9 space-y-16 max-w-5xl mx-auto w-full">
+        <main className="sm:px-5 lg:col-span-9 space-y-16 max-w-5xl mx-auto  px-4 box-border">
           {/* ABOUT */}
 
           <AboutSection personalDetails={personalDetails} />

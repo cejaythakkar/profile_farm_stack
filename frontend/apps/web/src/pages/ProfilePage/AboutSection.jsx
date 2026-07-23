@@ -1,6 +1,7 @@
 import React from 'react';
 import ProfilePageSection from './ProfilePageSection';
 import Card from './Card';
+import { getDateString } from '../../utils/dateTime';
 
 const AboutSection = ({ personalDetails }) => {
   return (
@@ -10,7 +11,7 @@ const AboutSection = ({ personalDetails }) => {
 
         <Card title="Email" value={personalDetails.email} />
 
-        <Card title="Birthday" value={personalDetails.dob_string} />
+        <Card title="Birthday" value={getDateString({dateString: personalDetails.dob, format:'DD-MM-YYYY'})} />
 
         <Card title="Address" value={personalDetails.address} />
       </div>

@@ -26,13 +26,19 @@ function formatMonth(month, format = "MM") {
 }
 
 export const getDateString = ({ dateString, format }) => {
-    switch (format) {
-        case 'MM-YYYY': {
-            if(dateString === '')
-              return 'Present'
-            const date = new Date(dateString);
-            const formattedDateString = `${formatMonth(date.getMonth() + 1,'MMM')}-${date.getFullYear()}`
-            return formattedDateString;
-        }
+  const date = new Date(dateString);
+  switch (format) {
+    case 'MM-YYYY': {
+      if (dateString === '')
+        return 'Present'
+      const formattedDateString = `${formatMonth(date.getMonth() + 1, 'MMM')}-${date.getFullYear()}`
+      return formattedDateString;
+
     }
+    case 'DD-MM-YYYY': {
+
+      const formattedDateString = `${date.getDate()}-${date.getMonth() + 1}-${date.getFullYear()}`
+      return formattedDateString;
+    }
+  }
 }
