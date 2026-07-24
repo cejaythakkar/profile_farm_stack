@@ -2,6 +2,7 @@ import { createContext, useContext, useEffect, useState } from 'react';
 import axiosClient from '../utils/axiosClient';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { LoadingScreen } from 'shared-component-library';
 
 const mainContext = createContext();
 export const useMainContext = () => useContext(mainContext);
@@ -43,7 +44,7 @@ export const MainContextProvider = ({ children }) => {
   useEffect(() => {
     fetchProfile();
   }, []);
-  if (loading) return <div>Loading....</div>;
+  if (loading) return <LoadingScreen />;
   return (
     <mainContext.Provider value={{ fetchProfile, user, logoutHandler,loading }}>
       {children}

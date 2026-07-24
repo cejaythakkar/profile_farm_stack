@@ -9,7 +9,6 @@ import { DYNAMIC_LIST_TYPE } from '../../constants';
 import  axiosClient from '../../utils/axiosClient';
 import { fetchData as getData } from '../../utils/api';
 import { useEffect, useState } from 'react';
-import WithLayout from '../../HOC/withLayout';
 
 const phoneRegExp = /^\+?[1-9]\d{1,14}$/;
 

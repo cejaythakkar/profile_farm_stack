@@ -13,7 +13,7 @@ const projectsSlice = createSlice({
     reducers: {
 
         setSelectedProject(state, action) {
-            state.selectedExperience = action.payload
+            state.selectedProject = action.payload
         },
         setProjectsData(state, action) {
             const processedData = action.payload.map((project) => ({
@@ -30,12 +30,12 @@ export const fetchProjects = () => {
         dispatch(setDataLoading(true))
         const response = await axiosClient.get('/projects')
         const data = response.data.data
-        console.log('data', data)
         dispatch(projectsSlice.actions.setProjectsData(data))
         dispatch(setDataLoading(false))
     }
 }
-export const deleteProject = ({ expId: projectId }) => {
+export const deleteProject = ({ projectId }) => {
+    console.log('projectId', projectId)
     return async (dispatch) => {
         dispatch(setDataLoading(true))
         await axiosClient.delete(`/projects/${projectId}`)
@@ -43,6 +43,6 @@ export const deleteProject = ({ expId: projectId }) => {
     }
 }
 
-export const { setSelectedExperience } = projectsSlice.actions
+export const { setSelectedProject } = projectsSlice.actions
 
 export default projectsSlice.reducer

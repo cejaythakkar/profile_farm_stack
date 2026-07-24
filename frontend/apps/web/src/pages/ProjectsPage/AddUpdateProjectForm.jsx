@@ -8,12 +8,12 @@ import axiosClient from '../../utils/axiosClient';
 import { FormSpinner } from 'shared-component-library';
 import { useSelector, useDispatch } from 'react-redux';
 import { setFormSubmit } from '../../store/uiSlice';
-import { fetchExperience } from '../../store/experienceSlice';
+import { fetchProjects } from '../../store/projectsSlice';
 import { toast } from 'react-toastify';
 
 const Form = () => {
   const { values, setFieldValue } = useFormikContext();
-  const personalProject = values.isPersonal;
+  const personalProject = values?.isPersonal;
   return (
     <>
       <div className="h-full flex flex-col  -mx-3 my-3">
@@ -94,7 +94,7 @@ const Form = () => {
           <FormComponents.FormikRichTextEditor
             name="contributions"
             text="Your Contribuion"
-            defaultValue={values.roles_responsibilities}
+            defaultValue={values.contributions}
           />
         </div>
       </div>
@@ -109,7 +109,7 @@ const AddUpdateProjectForm = ({
 }) => {
   const formRef = useRef(null);
   const formSubmit = useSelector((state) => state.ui.formSubmit);
-  const expData = useSelector((state) => state.experience.selectedExperience);
+  const projectData = useSelector((state) => state.projects.selectedProject);
   let defaultFormState = {
     title: '',
     isPersonal: false,
@@ -121,7 +121,7 @@ const AddUpdateProjectForm = ({
     githubRepo: '',
     contributions: '',
   };
-  if (editMode) defaultFormState = expData;
+  if (editMode) defaultFormState = projectData;
   const dispatch = useDispatch();
   return (
     <Modal
@@ -138,8 +138,6 @@ const AddUpdateProjectForm = ({
         initialValues={defaultFormState}
         validationSchema={yup.object().shape({})}
         submitHandler={async (values) => {
-          console.log(values)
-          
           let success = false;
           let successMessage = editMode
             ? 'Project Updated Successfully'
@@ -149,13 +147,12 @@ const AddUpdateProjectForm = ({
             editMode
               ? await axiosClient.put(`/projects/${values.id}`, values)
               : await axiosClient.post('/projects', values);
-            await new Promise((resolve) => setTimeout(resolve, 2000));
             success = true;
           } catch (e) {
             console.log('e', e);
           } finally {
             dispatch(setFormSubmit(false));
-            // dispatch(fetchExperience());
+            dispatch(fetchProjects());
             setIsModalOpen(false);
             success
               ? toast.success(successMessage)

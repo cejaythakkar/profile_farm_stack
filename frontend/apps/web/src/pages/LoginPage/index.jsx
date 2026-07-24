@@ -7,6 +7,7 @@ import  axiosClient  from '../../utils/axiosClient';
 import { toast } from 'react-toastify';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useMainContext } from '../../context/MainContext';
+import { LoadingScreen } from 'shared-component-library';
 
 const LoginPage = () => {
   
@@ -58,7 +59,7 @@ const LoginPage = () => {
       setIsLoading(false);
     }
   };
-  if (loading) return <div>Loading.....</div>;
+  if (loading) return <LoadingScreen />;
   return (
     <div className="flex flex-1 justify-center items-center">
       <Formik

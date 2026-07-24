@@ -8,12 +8,14 @@ import ProjectsGrid from './ProjectsGrid';
 import AddUpdateProjectForm from './AddUpdateProjectForm';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchProjects } from '../../store/projectsSlice';
+import ViewProject from './ViewProject';
 
 const ProjectsPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modelTitle, setModalTitle] = useState('');
   const dispatch = useDispatch();
   const projectsData = useSelector((state) => state.projects.projectsData);
+  const dataLoading = useSelector((state) => state.ui.dataLoading);
   useEffect(() => {
     dispatch(fetchProjects());
   }, [dispatch]);
@@ -36,7 +38,7 @@ const ProjectsPage = () => {
         showActionButtons={false}
         validationSchema={yup.object().shape({})}
       >
-        {/* {dataLoading && <FormSpinner />} */}
+        {dataLoading && <FormSpinner />}
         <FieldArray name="projects">
           {({ remove, push }) => (
             <FormSection
@@ -48,20 +50,32 @@ const ProjectsPage = () => {
               }}
               addButtonText="Add Project"
             >
-              <ProjectsGrid />
+              <ProjectsGrid actionButtonClickHandler={handleViewClick} />
             </FormSection>
           )}
         </FieldArray>
       </DynamicForm>
-
-      <Modal isOpen={isModalOpen} title={modelTitle} setIsOpen={setIsModalOpen}>
-        <AddUpdateProjectForm
+      {modelTitle == 'View Project' && (
+        <ViewProject
           isModalOpen={isModalOpen}
           modelTitle={modelTitle}
           setIsModalOpen={setIsModalOpen}
-          editMode={modelTitle == 'Update Project'}
         />
-      </Modal>
+      )}
+      {modelTitle != 'View Project' && (
+        <Modal
+          isOpen={isModalOpen}
+          title={modelTitle}
+          setIsOpen={setIsModalOpen}
+        >
+          <AddUpdateProjectForm
+            isModalOpen={isModalOpen}
+            modelTitle={modelTitle}
+            setIsModalOpen={setIsModalOpen}
+            editMode={modelTitle == 'Update Project'}
+          />
+        </Modal>
+      )}
     </>
   );
 };

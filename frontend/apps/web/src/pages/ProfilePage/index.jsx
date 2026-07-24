@@ -9,6 +9,7 @@ import AboutSection from './AboutSection';
 import ExperienceSection from './ExperienceSection';
 import SkillsSection from './SkillsSection';
 import ProfilePageSection from './ProfilePageSection';
+import {LoadingScreen} from 'shared-component-library'
 import Card from './Card';
 
 const sections = [
@@ -37,7 +38,10 @@ export default function ProfilePage() {
     if (userName) load();
   }, [userName]);
 
-  if (!profile) return <div>Loading...</div>;
+  if (!profile)
+    return (
+     <LoadingScreen />
+    );
 
   const { personalDetails, experiences, skills, projects } = profile;
 
@@ -133,5 +137,3 @@ export default function ProfilePage() {
     </div>
   );
 }
-
-

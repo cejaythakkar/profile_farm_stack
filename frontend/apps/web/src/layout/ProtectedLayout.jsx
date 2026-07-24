@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Outlet, useNavigate, useLocation } from 'react-router-dom';
 import { useMainContext } from '../context/MainContext';
-import WithLayout from '../HOC/withLayout'
+import { LoadingScreen } from 'shared-component-library';
 
 const ProtectedLayout = () => {
   const { user, loading } = useMainContext();
@@ -10,7 +10,7 @@ const ProtectedLayout = () => {
   const navigate = useNavigate();
 
   if (loading) {
-    return <div>Loading.....</div>;
+    return <LoadingScreen />;
   }
   useEffect(() => {
     if (!user?._id && !loading) {

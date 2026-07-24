@@ -1,4 +1,5 @@
 export { default as Logo } from './Logo';
+export { default as LoadingScreen } from './LoadingScreen';
 export { default as FormSpinner } from './FormSpinner';
 export { default as ProfileImage } from './ProfileImage/ProfileImage'
 export {
