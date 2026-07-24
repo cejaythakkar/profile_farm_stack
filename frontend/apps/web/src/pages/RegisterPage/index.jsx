@@ -20,17 +20,16 @@ const RegisterPage = () => {
       .email('Email must be valid')
       .required('Email is Required'),
     password: yup.string().required('Password is Required'),
-    confirmPassword: yup.string().required('Confirm Password is Required'),
   });
   const initialValue = {
     name: '',
     email: '',
     userName: '',
     password: '',
-    confirmPassword: '',
   };
 
   const onSubmithandler = async (values, helpers) => {
+    console.log('register page on submit');
     try {
       setIsLoading(true);
       const response = await axiosClient.post('/auth/register', values);

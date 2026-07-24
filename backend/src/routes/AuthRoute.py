@@ -10,6 +10,7 @@ import bson
 load_dotenv()
 JWT_AUTH_SECRET = os.getenv('JWT_AUTH_SECRET')
 authCollection = db["user"]
+personalDetailsCollection = db["personal-info"]
 
 route = APIRouter(prefix="/api/v1/auth",tags=["Auth"])
 
@@ -45,7 +46,6 @@ async def registerUser(userData: UserModel):
 
     salt = gensalt(10)
     userData["password"] = hashpw(userData["password"].encode(), salt).decode()
-
     try:
         document = await authCollection.insert_one(userData)
         # 7/0
@@ -58,6 +58,8 @@ async def registerUser(userData: UserModel):
         }
     else:
         inserted_document = await authCollection.find_one({"_id": document.inserted_id},{"password":0})
+        personalDetailsData = {"userId" :  str(inserted_document["_id"]),"email" : inserted_document["email"],"name" : inserted_document["name"]}
+        await personalDetailsCollection.insert_one(personalDetailsData)
         print(f"inserted_document : {inserted_document}")
         inserted_document["_id"] = str(inserted_document["_id"])
         token = jwt.encode({"userId":inserted_document["_id"]},JWT_AUTH_SECRET,algorithm="HS256")

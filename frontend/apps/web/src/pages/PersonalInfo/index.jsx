@@ -6,7 +6,7 @@ import DynamicList from '../../components/DynamicList';
 import FormSection from '../../components/FormSection';
 import { ProfileImage } from '../../../../../packages/ui/src/components';
 import { DYNAMIC_LIST_TYPE } from '../../constants';
-import  axiosClient from '../../utils/axiosClient';
+import axiosClient from '../../utils/axiosClient';
 import { fetchData as getData } from '../../utils/api';
 import { useEffect, useState } from 'react';
 
@@ -84,7 +84,7 @@ const PersonalInfo = () => {
       const data = await getData({ url: '/personal-info' });
       await new Promise((resolve) => setTimeout(resolve, 5000));
       setLoading(false);
-      setInitialValues(data);
+      setInitialValues({ ...defaultValues, ...data });
     };
     fetchData();
   }, []);
@@ -205,7 +205,6 @@ const PersonalInfo = () => {
                             />
                           ))}
                       </div>
-                      
                     </FormSection>
                   )}
                 </FieldArray>
