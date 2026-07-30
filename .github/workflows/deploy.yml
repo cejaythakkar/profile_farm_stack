@@ -1,0 +1,38 @@
+name: Deploy Fullstack App to AWS EC2
+
+on:
+  push:
+    branches:
+      - main # Triggers the deployment whenever you push to the main branch
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to EC2 via SSH
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USERNAME }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          script: |
+            # 1. Navigate to the project directory or clone it if it's the very first time
+            if [ ! -d "my-project" ]; then
+              git clone https://github.com{{ github.repository }}.git my-project
+              cd my-project
+            else
+              cd my-project
+              # Clear any local differences and pull fresh code from GitHub
+              git reset --hard origin/main
+              git pull origin main
+            fi
+
+            # 2. Inject your production environment variables securely into a local host .env file
+            echo "MONGODB_URI=${{ secrets.MONGODB_URI }}" > .env
+            echo 'ALLOWED_ORIGIN=${{ secrets.ALLOWED_ORIGIN }}' >> .env
+            echo "DB_NAME=${{ secrets.DB_NAME }}" >> .env
+
+            # 3. Stop running containers, clean up cached disk images, and spin everything up fresh
+            docker compose down --remove-orphans
+            docker image prune -f
+            docker compose up --build --force-recreate -d
