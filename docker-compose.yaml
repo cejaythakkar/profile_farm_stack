@@ -4,6 +4,8 @@ services:
     build:
       context: ./frontend
     restart: always
+    environment:
+      - VITE_APP_BACKEND_URI=${VITE_APP_BACKEND_URI}
 
   # 2. PYTHON BACKEND
   # 2. PYTHON BACKEND
@@ -14,6 +16,14 @@ services:
     # CRITICAL: This tricks your hardcoded python file into sending "localhost" calls to the Redis container
     extra_hosts:
       - "localhost:host-gateway"
+    environment:
+      - MONGODB_URI=${MONGODB_URI}
+      - ALLOWED_ORIGIN=${ALLOWED_ORIGIN}
+      - DB_NAME=${DB_NAME}
+      - JWT_AUTH_SECRET=${JWT_AUTH_SECRET}
+      - CLOUDINARY_CLOUD_NAME=${CLOUDINARY_CLOUD_NAME}
+      - CLOUDINARY_API_KEY=${CLOUDINARY_API_KEY}
+      - CLOUDINARY_API_SECRET=${CLOUDINARY_API_SECRET}
     depends_on:
       redis:
         condition: service_healthy
