@@ -16,17 +16,18 @@ jobs:
           username: ${{ secrets.EC2_USERNAME }}
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
-            # 1. We read the repository via the clean $GITHUB_REPOSITORY system flag
-            if [ ! -d "my-project" ]; then
-              git clone "https://github.com{GITHUB_REPOSITORY}.git" my-project
+            # 1. Clone using your precise repository name
+            if [ ! -d "profile_farm_stack" ]; then
+              git clone "https://github.com" profile_farm_stack
             fi
             
-            cd my-project
+            cd profile_farm_stack
             
+            # Reset any local file differences and pull fresh code safely
             git reset --hard origin/main
             git pull origin main
 
-            # 2. Write your secrets directly using specialized EOF to prevent quote stripping
+            # 2. Write secrets exactly as they appear on your GitHub dashboard
             cat << 'EOF' > .env
             MONGO_URI=${{ secrets.MONGO_URI }}
             ALLOWED_ORIGIN=${{ secrets.ALLOWED_ORIGIN }}
@@ -39,7 +40,7 @@ jobs:
             VITE_APP_BACKEND_URI=${{ secrets.VITE_APP_BACKEND_URI }}
             EOF
 
-            # 3. Clean and launch the entire stack
+            # 3. Clean up the disk and spin up the entire cluster
             docker compose down --remove-orphans
             docker image prune -f
             docker compose up --build --force-recreate -d
