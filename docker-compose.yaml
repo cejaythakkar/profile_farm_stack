@@ -2,8 +2,8 @@ services:
   # 1. REACT FRONTEND
   frontend:
     build:
-      context: .                   # CRITICAL: Shifts context to project root so turbo can see all folders
-      dockerfile: ./frontend/Dockerfile # Points directly to your frontend Dockerfile
+      context: ./frontend       # Changed context back to local folder structure
+      dockerfile: Dockerfile
       args:
         - VITE_APP_BACKEND_URI=${VITE_APP_BACKEND_URI}
     restart: always
