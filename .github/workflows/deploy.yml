@@ -16,18 +16,23 @@ jobs:
           username: ${{ secrets.EC2_USERNAME }}
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
-            # 1. Clone using your precise repository name
+            # 1. We encode your URL into safe alphanumeric characters so the parser cannot alter it
+            # This decodes smoothly directly on your EC2 instance into your exact Git string
+            B64_URL="aHR0cHM6Ly9naXRodWIuY29tL2NlamF5dGhha2thci9wcm9maWxlX2Zhcm1fc3RhY2suZ2l0"
+            REAL_URL=$(echo "$B64_URL" | base64 --decode)
+
+            # 2. Execute the clone using the safe decoded variable string
             if [ ! -d "profile_farm_stack" ]; then
-              git clone "https://github.com" profile_farm_stack
+              git clone "$REAL_URL" profile_farm_stack
             fi
             
             cd profile_farm_stack
             
-            # Reset any local file differences and pull fresh code safely
+            # Clear local tracking states and pull code safely
             git reset --hard origin/main
-            git pull origin main
+            git pull "$REAL_URL" main
 
-            # 2. Write secrets exactly as they appear on your GitHub dashboard
+            # 3. Write your secrets directly using specialized EOF to prevent quote stripping
             cat << 'EOF' > .env
             MONGO_URI=${{ secrets.MONGO_URI }}
             ALLOWED_ORIGIN=${{ secrets.ALLOWED_ORIGIN }}
@@ -40,7 +45,7 @@ jobs:
             VITE_APP_BACKEND_URI=${{ secrets.VITE_APP_BACKEND_URI }}
             EOF
 
-            # 3. Clean up the disk and spin up the entire cluster
+            # 4. Clean up the disk and spin up your stack
             docker compose down --remove-orphans
             docker image prune -f
             docker compose up --build --force-recreate -d
