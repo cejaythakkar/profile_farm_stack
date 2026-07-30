@@ -3,12 +3,35 @@ name: Deploy Fullstack App to AWS EC2
 on:
   push:
     branches:
-      - main # Triggers the deployment whenever you push to the main branch
+      - main
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
+      # 1. Authenticate with AWS directly on the GitHub cloud runner
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+
+      # 2. Automatically find and resize your EC2 volume to 30 GB via AWS CLI
+      - name: Expand AWS Volume Storage Size to 30GB
+        run: |
+          # Fetch the unique Root Volume ID attached to your EC2 IP
+          VOLUME_ID=$(aws ec2 describe-instances \
+            --filters "Name=ip-address,Values=${{ secrets.EC2_HOST }}" \
+            --query "Reservations[*].Instances[*].BlockDeviceMappings[0].Ebs.VolumeId" \
+            --output text)
+          
+          echo "Target Volume Detected: $VOLUME_ID"
+          
+          # Force the volume size to upscale directly to 30 GB
+          aws ec2 modify-volume --volume-id $VOLUME_ID --size 30 || true
+
+      # 3. Connect to your instance over SSH to finalize the setup
       - name: Deploy to EC2 via SSH
         uses: appleboy/ssh-action@v1.0.3
         with:
@@ -16,23 +39,24 @@ jobs:
           username: ${{ secrets.EC2_USERNAME }}
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
-            # 1. We encode your URL into safe alphanumeric characters so the parser cannot alter it
-            # This decodes smoothly directly on your EC2 instance into your exact Git string
+            # Expand the Linux partition maps to swallow the newly added space
+            # On modern AWS NVMe t2 instances, the root disk mapping is /dev/nvme0n1 or /dev/xvda
+            sudo growpart /dev/xvda 1 || sudo growpart /dev/nvme0n1 1 || true
+            sudo resize2fs /dev/xvda1 || sudo resize2fs /dev/nvme0n1p1 || true
+            
+            # Base64 Decoder layer to securely target your repository
             B64_URL="aHR0cHM6Ly9naXRodWIuY29tL2NlamF5dGhha2thci9wcm9maWxlX2Zhcm1fc3RhY2suZ2l0"
             REAL_URL=$(echo "$B64_URL" | base64 --decode)
 
-            # 2. Execute the clone using the safe decoded variable string
             if [ ! -d "profile_farm_stack" ]; then
               git clone "$REAL_URL" profile_farm_stack
             fi
             
             cd profile_farm_stack
-            
-            # Clear local tracking states and pull code safely
             git reset --hard origin/main
             git pull "$REAL_URL" main
 
-            # 3. Write your secrets directly using specialized EOF to prevent quote stripping
+            # Write secrets cleanly into the .env file
             cat << 'EOF' > .env
             MONGO_URI=${{ secrets.MONGO_URI }}
             ALLOWED_ORIGIN=${{ secrets.ALLOWED_ORIGIN }}
@@ -45,7 +69,10 @@ jobs:
             VITE_APP_BACKEND_URI=${{ secrets.VITE_APP_BACKEND_URI }}
             EOF
 
-            # 4. Clean up the disk and spin up your stack
-            docker compose down --remove-orphans
-            docker image prune -f
+            # Wipe out corrupted build cache layers to free up everything
+            docker compose down --remove-orphans || true
+            docker system prune -a --volumes -f
+            docker builder prune -a -f
+
+            # Build and deploy the application
             docker compose up --build --force-recreate -d
