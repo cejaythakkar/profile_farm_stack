@@ -67,7 +67,7 @@ services:
           listen 80;
           
           # FIX: Captures both /api and anything nested like /api/v1/profile
-          location /api/ {
+          location /api {
               proxy_pass http://backend:8000/api/;
               proxy_set_header Host $$host;
               proxy_set_header X-Real-IP $$remote_addr;
