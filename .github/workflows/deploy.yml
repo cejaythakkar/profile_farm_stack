@@ -16,12 +16,6 @@ jobs:
           username: ${{ secrets.EC2_USERNAME }}
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
-            # 1. Expand the operating system partitions to claim all available storage
-            # This handles standard t2 block layouts dynamically
-            sudo growpart /dev/xvda 1 || sudo growpart /dev/nvme0n1 1 || true
-            sudo resize2fs /dev/xvda1 || sudo resize2fs /dev/nvme0n1p1 || true
-            
-            # 2. Base64 Decoder layer to securely target your repository
             B64_URL="aHR0cHM6Ly9naXRodWIuY29tL2NlamF5dGhha2thci9wcm9maWxlX2Zhcm1fc3RhY2suZ2l0"
             REAL_URL=$(echo "$B64_URL" | base64 --decode)
 
@@ -33,7 +27,7 @@ jobs:
             git reset --hard origin/main
             git pull "$REAL_URL" main
 
-            # 3. Write secrets cleanly into the .env file
+            # Write secrets cleanly to your host environment file
             cat << 'EOF' > .env
             MONGO_URI=${{ secrets.MONGO_URI }}
             ALLOWED_ORIGIN=${{ secrets.ALLOWED_ORIGIN }}
@@ -46,10 +40,7 @@ jobs:
             VITE_APP_BACKEND_URI=${{ secrets.VITE_APP_BACKEND_URI }}
             EOF
 
-            # 4. Aggressively purge corrupted or dangling build cache layers
+            # Wipe old container states and build the stack fresh
             docker compose down --remove-orphans || true
-            docker system prune -a --volumes -f
-            docker builder prune -a -f
-
-            # 5. Compile and deploy the application
+            docker system prune -f
             docker compose up --build --force-recreate -d
