@@ -3,7 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 import PersonalInfo from './pages/PersonalInfo';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
-import  axiosClient  from './utils/axiosClient';
+import axiosClient from './utils/axiosClient';
 import MainContextProvider from './context/MainContext';
 import ProtectedLayout from './layout/ProtectedLayout';
 import HomePage from './pages/HomePage';
@@ -16,12 +16,21 @@ import MainLayout from './layout/MainLayout';
 const checkServerHealth = async () => {
   const response = await axiosClient.get('/health');
   const data = await response.data;
-  
 };
 
 const App = () => {
   useEffect(() => {
+    const handleBrowserClose = () => {
+      // Clear your tokens securely
+      localStorage.removeItem('token');
+    };
     checkServerHealth();
+    window.addEventListener('beforeunload', handleBrowserClose);
+
+    // Clean up the event listener if the component re-renders
+    return () => {
+      window.removeEventListener('beforeunload', handleBrowserClose);
+    };
   }, []);
   return (
     <>

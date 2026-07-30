@@ -49,7 +49,7 @@ export default function ProfilePage() {
 
   return (
     <div className="bg-slate-50 min-h-screen">
-      <HeroSection personalDetails={personalDetails} />
+      <HeroSection personalDetails={personalDetails} userName={userName} />
 
       <MobileNavigation sections={sections} />
 
