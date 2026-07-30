@@ -18,7 +18,7 @@ jobs:
           script: |
             # 1. Navigate to the project directory or clone it if it's the very first time
             if [ ! -d "my-project" ]; then
-              git clone https://github.com/${{ github.repository }}.git my-project
+              git clone https://github.com{{ github.repository }}.git my-project
               cd my-project
             else
               cd my-project
