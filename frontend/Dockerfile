@@ -32,4 +32,4 @@ COPY --from=builder /app .
 EXPOSE 4173
 
 # Using explicit shell execution prevents Node from trying to parse pnpm as a file
-CMD ["sh", "-c", "pnpm --filter web run preview"]
+CMD ["sh", "-c", "pnpm --filter web run preview --host 0.0.0.0 --port 4173"]

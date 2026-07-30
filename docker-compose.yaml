@@ -1,10 +1,10 @@
 services:
   # 1. REACT FRONTEND
   frontend:
+    frontend:
     build:
-      context: .
-      dockerfile: ./apps/web/Dockerfile
-      # CHANGE HERE: Passes the variable at compilation time
+      context: .                   # CRITICAL: Shifts context to project root so turbo can see all folders
+      dockerfile: ./frontend/Dockerfile # Points directly to your frontend Dockerfile
       args:
         - VITE_APP_BACKEND_URI=${VITE_APP_BACKEND_URI}
     restart: always
