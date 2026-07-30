@@ -16,6 +16,8 @@ COPY --from=pruner /app/out/pnpm-lock.yaml ./pnpm-lock.yaml
 RUN pnpm install --frozen-lockfile
 
 COPY --from=pruner /app/out/full/ .
+ARG VITE_APP_BACKEND_URI
+ENV VITE_APP_BACKEND_URI=$VITE_APP_BACKEND_URI
 ENV TURBO_TELEMETRY_DISABLED=1
 RUN pnpm run build
 

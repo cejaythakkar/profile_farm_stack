@@ -2,10 +2,12 @@ services:
   # 1. REACT FRONTEND
   frontend:
     build:
-      context: ./frontend
+      context: .
+      dockerfile: ./apps/web/Dockerfile
+      # CHANGE HERE: Passes the variable at compilation time
+      args:
+        - VITE_APP_BACKEND_URI=${VITE_APP_BACKEND_URI}
     restart: always
-    environment:
-      - VITE_APP_BACKEND_URI=${VITE_APP_BACKEND_URI}
 
   # 2. PYTHON BACKEND
   # 2. PYTHON BACKEND
