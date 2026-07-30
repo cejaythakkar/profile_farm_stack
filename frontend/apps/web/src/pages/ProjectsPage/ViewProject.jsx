@@ -8,10 +8,8 @@ const Form = () => {
 
   return (
     <div className="h-full flex flex-col bg-slate-900 border border-slate-800 rounded-xl px-6 py-6 overflow-y-auto max-w-5xl mx-auto shadow-xl text-white">
-
       {/* Header */}
       <div className="w-full pb-4 mb-6 border-b border-slate-800 flex flex-col gap-2">
-
         <span className="text-xs uppercase tracking-wider text-cyan-400 font-semibold">
           Project
         </span>
@@ -21,7 +19,6 @@ const Form = () => {
         </h2>
 
         <div className="flex flex-wrap items-center gap-2 text-sm">
-
           <span className="text-slate-400">
             {selectedProject.role || 'Role Not Specified'}
           </span>
@@ -31,20 +28,17 @@ const Form = () => {
               <span className="text-slate-600">•</span>
 
               <span className="font-medium text-slate-300">
-                {selectedProject.company}
+                {selectedProject.company.company}
               </span>
             </>
           )}
-
         </div>
       </div>
 
       {/* Information */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-6">
-
         {/* Domains */}
         <div className="bg-slate-800/40 border border-slate-800 rounded-lg p-4">
-
           <span className="text-xs uppercase tracking-wider text-slate-400">
             Domain
           </span>
@@ -60,16 +54,13 @@ const Form = () => {
                 </span>
               ))
             ) : (
-              <span className="text-slate-500 text-sm">
-                Not Specified
-              </span>
+              <span className="text-slate-500 text-sm">Not Specified</span>
             )}
           </div>
         </div>
 
         {/* Technology */}
         <div className="bg-slate-800/40 border border-slate-800 rounded-lg p-4">
-
           <span className="text-xs uppercase tracking-wider text-slate-400">
             Technology
           </span>
@@ -85,22 +76,17 @@ const Form = () => {
                 </span>
               ))
             ) : (
-              <span className="text-slate-500 text-sm">
-                Not Specified
-              </span>
+              <span className="text-slate-500 text-sm">Not Specified</span>
             )}
           </div>
         </div>
-
       </div>
 
       {/* Links */}
       {(selectedProject.link || selectedProject.githubRepo) && (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-6">
-
           {selectedProject.link && (
             <div className="bg-slate-800/40 border border-slate-800 rounded-lg p-4">
-
               <span className="text-xs uppercase tracking-wider text-slate-400">
                 Live Project
               </span>
@@ -113,13 +99,11 @@ const Form = () => {
               >
                 {selectedProject.link}
               </a>
-
             </div>
           )}
 
           {selectedProject.githubRepo && (
             <div className="bg-slate-800/40 border border-slate-800 rounded-lg p-4">
-
               <span className="text-xs uppercase tracking-wider text-slate-400">
                 GitHub Repository
               </span>
@@ -132,16 +116,13 @@ const Form = () => {
               >
                 {selectedProject.githubRepo}
               </a>
-
             </div>
           )}
-
         </div>
       )}
 
       {/* Contribution */}
       <div className="flex-1 flex flex-col gap-2">
-
         <span className="text-xs uppercase tracking-wider text-slate-400">
           Contribution
         </span>
@@ -152,9 +133,7 @@ const Form = () => {
             __html: selectedProject.contributions,
           }}
         />
-
       </div>
-
     </div>
   );
 };

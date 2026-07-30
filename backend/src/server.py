@@ -1,3 +1,4 @@
+from contextlib import asynccontextmanager
 from fastapi import FastAPI,HTTPException
 from fastapi.responses import JSONResponse
 from src.routes.PublicRoute import route as public_route
@@ -7,9 +8,11 @@ from src.routes.ExperienceRoute import route as experience_route
 from src.routes.PersonalDetails import route as personalDetails_route
 from src.routes.ProfileRoute import route as profile_route
 from src.routes.ProjectsRoute import route as projects_route
+from src.routes.ResumeRouter import router as resume_route
 from dotenv import load_dotenv
 import os
 import json
+from src.config.redis import redis
 
 load_dotenv()
 
@@ -18,8 +21,14 @@ allowed_origin = json.loads(allowed_origin_string)
 
 
 from fastapi.middleware.cors import CORSMiddleware
+@asynccontextmanager
+async def lifeSpan(app:FastAPI):
+    await redis.ping()
+    print("Redis Connected")
+    yield
+    await redis.close()
 
-server = FastAPI()
+server = FastAPI(lifespan=lifeSpan)
 origins = allowed_origin
 server.add_middleware(
     CORSMiddleware,
@@ -37,6 +46,7 @@ async def custom_http_exception_handler(request,execption):
         "message":execption.detail
     }
                         )
+server.include_router(resume_route)
 server.include_router(public_route)
 server.include_router(auth_route)
 server.include_router(skills_route)

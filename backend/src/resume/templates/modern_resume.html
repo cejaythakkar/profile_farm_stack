@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>{{ userDetails.name }}</title>
+
+    <style>
+      {{ css | safe }}
+    </style>
+  </head>
+
+  <body>
+    <div class="page">
+      <!-- ================= LEFT SIDEBAR ================= -->
+
+      <aside class="sidebar">
+        {% if personalDetails.profileImage %}
+        <img
+          class="profile-photo"
+          src="{{ personalDetails.profileImage }}"
+          alt="{{ userDetails.userName }}"
+        />
+        {% endif %}
+
+        {% if skills.skills %}
+
+        <section>
+          <h3>Skills</h3>
+
+          {% for category, skill_list in skills.skills.items() %}
+
+          <div class="skill-category">
+            <h4>{{ category }}</h4>
+
+            <ul>
+              {% for skill in skill_list %}
+
+              <li>{{ skill }}</li>
+
+              {% endfor %}
+            </ul>
+          </div>
+
+          {% endfor %}
+        </section>
+
+        {% endif %} 
+
+        <section>
+          <h3>Contact</h3>
+
+          {% if personalDetails.contactDetails %} {% for contact in
+          personalDetails.contactDetails %}
+          <div>
+            <h4>{{ contact.type }}</h4>
+            <p>{{ contact.number }}</p>
+          </div>
+          {% endfor %} {% endif %} 
+          {% if userDetails.email %}
+            <div>
+                <h4>Email</h4>
+                <p>{{ userDetails.email }}</p>
+            </div>
+        
+          {% endif %} 
+          {% if profile.location %}
+          <p>{{ profile.location }}</p>
+          {% endif %} {% if profile.website %}
+          <p>{{ profile.website }}</p>
+          {% endif %}
+        </section>
+
+        {% if personalDetails.socialMedia %}
+
+        <section>
+          <h3>Social</h3>
+
+          {% for social in personalDetails.socialMedia %}
+
+          <div class="social">
+            <strong>{{ social.type }}</strong>
+
+            <div class="social-link">{{ social.link }}</div>
+          </div>
+
+          {% endfor %}
+        </section>
+
+        {% endif %} 
+        
+        {% if personalDetails.languagesKnown %}
+
+        <section>
+          <h3>Languages</h3>
+
+          <ul>
+            {% for language in personalDetails.languagesKnown %}
+
+            <li>
+              {{ language.value }} 
+            </li>
+
+            {% endfor %}
+          </ul>
+        </section>
+
+        {% endif %} {% if certifications %}
+
+        <section>
+          <h3>Certifications</h3>
+
+          {% for cert in certifications %}
+
+          <div class="certification">
+            <strong>{{ cert.name }}</strong>
+
+            <div>{{ cert.organization }}</div>
+          </div>
+
+          {% endfor %}
+        </section>
+
+        {% endif %}
+      </aside>
+
+      <!-- ================= MAIN CONTENT ================= -->
+
+      <main class="content">
+        <header>
+          <h1>{{ personalDetails.name }}</h1>
+
+          <h2>{{ profile.headline }}</h2>
+        </header>
+
+        {% if profile.summary %}
+
+        <section>
+          <h3>Professional Summary</h3>
+
+          <p>{{ profile.summary }}</p>
+        </section>
+
+        {% endif %} 
+        
+        {% if experiences %}
+
+        <section>
+          <h3>Experience</h3>
+
+          {% for exp in experiences %}
+
+          <article class="experience">
+            <div class="title-row">
+              <div>
+                <h4>{{ exp.position }}</h4>
+
+                <div>{{ exp.company }}</div>
+              </div>
+
+              <div>
+                {{ exp.fromDate }} - {% if exp.toDate %} {{
+                exp.toDate }} {% else %} Present {% endif %}
+              </div>
+            </div>
+
+            {% if exp.roles_responsibilities %}
+            <div class="rich-text-content">{{ exp.roles_responsibilities }}</div>
+            {% endif %} {% if exp.highlights %}
+
+            <ul>
+              {% for point in exp.highlights %}
+
+              <li>{{ point }}</li>
+
+              {% endfor %}
+            </ul>
+
+            {% endif %}
+          </article>
+
+          {% endfor %}
+        </section>
+
+        {% endif %} {% if projects %}
+
+        <section>
+          <h3>Projects</h3>
+
+          {% for project in projects %}
+
+          <article>
+            <h4>{{ project.title }}</h4>
+
+            <p>{{ project.contributions }}</p>
+
+            {% if project.technologies %}
+
+            <div class="tech-stack">
+              {% for tech in project.technology %}
+
+              <span>{{ tech.value }}</span>
+
+              {% endfor %}
+            </div>
+
+            {% endif %}
+          </article>
+
+          {% endfor %}
+        </section>
+
+        {% endif %} {% if education %}
+
+        <section>
+          <h3>Education</h3>
+
+          {% for edu in education %}
+
+          <article>
+            <h4>{{ edu.degree }}</h4>
+
+            <div>{{ edu.institute }}</div>
+
+            <div>{{ edu.startYear }} - {{ edu.endYear }}</div>
+          </article>
+
+          {% endfor %}
+        </section>
+
+        {% endif %} {% if awards %}
+
+        <section>
+          <h3>Awards</h3>
+
+          {% for award in awards %}
+
+          <article>
+            <strong>{{ award.title }}</strong>
+
+            <div>{{ award.organization }}</div>
+          </article>
+
+          {% endfor %}
+        </section>
+
+        {% endif %} {% if publications %}
+
+        <section>
+          <h3>Publications</h3>
+
+          {% for publication in publications %}
+
+          <article>
+            <strong>{{ publication.title }}</strong>
+
+            <div>{{ publication.publisher }}</div>
+          </article>
+
+          {% endfor %}
+        </section>
+
+        {% endif %}
+      </main>
+    </div>
+  </body>
+</html>

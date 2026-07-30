@@ -13,6 +13,8 @@ import { toast } from 'react-toastify';
 
 const Form = () => {
   const { values, setFieldValue } = useFormikContext();
+  
+  const usersCompanies = useSelector((state) => state.projects.usersCompanies);
   const personalProject = values?.isPersonal;
   return (
     <>
@@ -36,10 +38,16 @@ const Form = () => {
           </div>
           <div className="flex-1 md:w-1/2 px-3  md:mb-0 ">
             {!personalProject && (
-              <FormComponents.Input
+              <FormComponents.SelectBox
                 name="company"
                 text="Company"
-                type={'text'}
+                options={usersCompanies.map((company) => ({
+                  label: company.company,
+                  value: company['_id'],
+                  ...company
+                }))}
+                value={values.company}
+                onChangeHandler={setFieldValue}
                 required
                 placeholder="Please Enter Company"
               />
@@ -110,6 +118,7 @@ const AddUpdateProjectForm = ({
   const formRef = useRef(null);
   const formSubmit = useSelector((state) => state.ui.formSubmit);
   const projectData = useSelector((state) => state.projects.selectedProject);
+  const usersCompanies = useSelector((state) => state.projects.usersCompanies);
   let defaultFormState = {
     title: '',
     isPersonal: false,
@@ -129,43 +138,57 @@ const AddUpdateProjectForm = ({
       title={modelTitle}
       setIsOpen={setIsModalOpen}
       submitButtonTitle={editMode ? 'Update' : 'Add'}
+      isSubmitButtonDisabled={usersCompanies.length == 0}
       submitHandler={() => formRef.current?.handleSubmit()}
     >
       {' '}
-      {formSubmit && <FormSpinner />}
-      <DynamicForm
-        innerRef={formRef}
-        initialValues={defaultFormState}
-        validationSchema={yup.object().shape({})}
-        submitHandler={async (values) => {
-          let success = false;
-          let successMessage = editMode
-            ? 'Project Updated Successfully'
-            : 'Project Added Successfully!';
-          dispatch(setFormSubmit(true));
-          try {
-            editMode
-              ? await axiosClient.put(`/projects/${values.id}`, values)
-              : await axiosClient.post('/projects', values);
-            success = true;
-          } catch (e) {
-            console.log('e', e);
-          } finally {
-            dispatch(setFormSubmit(false));
-            dispatch(fetchProjects());
-            setIsModalOpen(false);
-            success
-              ? toast.success(successMessage)
-              : toast.error(
-                  'Something went Wrong while updating... Please Try Again.',
-                );
-          }
-        }}
-        widthFull
-        showActionButtons={false}
-      >
-        <Form />
-      </DynamicForm>
+      {!usersCompanies.length ? (
+        <div className="w-full h-full text-white flex items-center justify-center">
+          <p className="w-[75%] text-lg border p-4 rounded">
+            You can't add a project until you've added at least one experience
+            entry.
+          </p>
+        </div>
+      ) : (
+        <>
+          {formSubmit && <FormSpinner />}
+          <DynamicForm
+            innerRef={formRef}
+            initialValues={defaultFormState}
+            validationSchema={yup.object().shape({})}
+            submitHandler={async (values) => {
+              console.log('values', values)
+              
+              let success = false;
+              let successMessage = editMode
+                ? 'Project Updated Successfully'
+                : 'Project Added Successfully!';
+              dispatch(setFormSubmit(true));
+              try {
+                editMode
+                  ? await axiosClient.put(`/projects/${values.id}`, values)
+                  : await axiosClient.post('/projects', values);
+                success = true;
+              } catch (e) {
+                console.log('e', e);
+              } finally {
+                dispatch(setFormSubmit(false));
+                dispatch(fetchProjects());
+                setIsModalOpen(false);
+                success
+                  ? toast.success(successMessage)
+                  : toast.error(
+                      'Something went Wrong while updating... Please Try Again.',
+                    );
+              }
+            }}
+            widthFull
+            showActionButtons={false}
+          >
+            <Form />
+          </DynamicForm>
+        </>
+      )}
     </Modal>
   );
 };

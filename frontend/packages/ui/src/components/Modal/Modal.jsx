@@ -42,9 +42,11 @@ const Modal = ({
   setIsOpen,
   title = 'Update Project',
   submitButtonTitle = 'Save Changes',
+  isSubmitButtonDisabled = false,
   showCancelButton = true,
   submitHandler = () => {},
 }) => {
+  console.log('isSubmitButtonDisabled', isSubmitButtonDisabled)
   return (
     <ReactModal isOpen={isOpen} style={customStyles}>
       {/* Fixed: explicitly added "flex flex-col" to lock the 10%/80%/10% grid proportions */}
@@ -85,6 +87,7 @@ const Modal = ({
           <Button
             text={submitButtonTitle}
             clickHandler={submitHandler}
+            disabled={isSubmitButtonDisabled}
             color="blue"
           />
         </div>

@@ -30,7 +30,7 @@ const ProjectsSection = ({ projects }) => {
                       project.isPersonal ? 'bg-green-500' : 'bg-orange-500'
                     }`}
                   >
-                    {project.isPersonal ? 'Personal Project' : project.company}
+                    {project.isPersonal ? 'Personal Project' : project.company.company}
                   </span>
                 </div>
               </div>

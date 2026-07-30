@@ -1,0 +1,244 @@
+/* Reset */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+@page {
+    size: A4;
+    margin: 0;
+}
+
+body {
+    font-family: "Inter", Arial, sans-serif;
+    color: #333;
+    background: white;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+.page {
+    display: flex;
+}
+
+/* =======================
+   LEFT SIDEBAR
+======================= */
+
+.sidebar {
+    width: 30%;
+    background: #1e293b;
+    color: white;
+    padding: 32px 24px;
+}
+
+.profile-photo {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    display: block;
+    margin: 0 auto 24px;
+    object-fit: cover;
+}
+
+.sidebar section {
+    margin-bottom: 28px;
+}
+
+.sidebar h3 {
+    font-size: 15px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid rgba(255,255,255,.25);
+}
+
+.sidebar h4 {
+    font-size: 13px;
+    margin-bottom: 6px;
+}
+
+.sidebar p {
+    margin-bottom: 6px;
+     font-size: 12px;
+    word-break: break-word;
+}
+
+.sidebar ul {
+    list-style: none;
+}
+
+.sidebar li {
+    margin-bottom: 8px;
+}
+
+.social {
+    margin-bottom: 12px;
+}
+
+.sidebar .social-link {
+    overflow-wrap: break-word;
+    word-wrap: break-word;      /* Legacy support */
+    word-break: break-word;
+    white-space: normal;
+    max-width: 100%;
+}
+
+.social strong {
+    display: block;
+    font-size: 13px;
+}
+
+.certification {
+    margin-bottom: 12px;
+}
+
+/* =======================
+   RIGHT CONTENT
+======================= */
+
+.content {
+    width: 70%;
+    padding: 36px;
+}
+
+header {
+    margin-bottom: 28px;
+}
+
+header h1 {
+    font-size: 34px;
+    color: #111827;
+}
+
+header h2 {
+    margin-top: 6px;
+    font-size: 18px;
+    color: #2563eb;
+    font-weight: 500;
+}
+
+/* =======================
+   SECTIONS
+======================= */
+
+section {
+    margin-bottom: 30px;
+}
+
+.content h3 {
+    font-size: 18px;
+    color: #2563eb;
+    margin-bottom: 14px;
+    border-bottom: 2px solid #2563eb;
+    padding-bottom: 6px;
+}
+
+.content h4 {
+    font-size: 15px;
+    color: #111827;
+}
+
+article {
+    margin-bottom: 20px;
+}
+
+/* =======================
+   EXPERIENCE
+======================= */
+
+.title-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 8px;
+}
+
+.title-row h4 {
+    margin-bottom: 2px;
+}
+
+.title-row > div:last-child {
+    color: #666;
+    font-size: 12px;
+    white-space: nowrap;
+}
+
+article p {
+    margin: 8px 0;
+}
+
+article ul {
+    margin-left: 18px;
+}
+
+article li {
+    margin-bottom: 5px;
+}
+
+/* =======================
+   TECH STACK
+======================= */
+
+.tech-stack {
+    margin-top: 10px;
+}
+
+.tech-stack span {
+    display: inline-block;
+    background: #e0edff;
+    color: #2563eb;
+    padding: 4px 10px;
+    border-radius: 30px;
+    margin: 4px 4px 0 0;
+    font-size: 11px;
+}
+
+/* =======================
+   SKILLS
+======================= */
+
+.skill-category {
+    margin-bottom: 16px;
+}
+
+.skill-category ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 6px;
+}
+
+.skill-category li {
+    background: rgba(255,255,255,.15);
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+}
+
+/* =======================
+   LINKS
+======================= */
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+/* =======================
+   PRINT
+======================= */
+
+
+article {
+    /* break-inside: avoid;
+    page-break-inside: avoid; */
+}
+
+section {
+    break-inside: auto;
+    page-break-inside: auto;
+}

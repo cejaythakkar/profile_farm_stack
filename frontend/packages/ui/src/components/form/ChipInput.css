@@ -15,7 +15,10 @@
     @apply bg-transparent border border-white flex h-full items-center my-0 mr-1
 }
 .selectBox-container .selectBox__control .selectBox__input-container{
-    @apply h-full flex 
+    @apply h-full flex text-white
+}
+.selectBox-container .selectBox__control .selectBox__input-container{
+    @apply text-white
 }
 .selectBox-container .selectBox__control .selectBox__multi-value .selectBox__multi-value__label{
     @apply text-white flex items-center

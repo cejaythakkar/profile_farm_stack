@@ -57,7 +57,7 @@ const ProjectsGrid = ({ actionButtonClickHandler }) => {
           );
           if (formikIndex === -1) return null;
 
-          return <span>{values.projects[formikIndex]?.company || '-'}</span>;
+          return <span>{values.projects[formikIndex]?.company?.company || '-'}</span>;
         },
       },
       {

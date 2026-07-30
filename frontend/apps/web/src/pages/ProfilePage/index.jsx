@@ -23,6 +23,8 @@ const sections = [
   { id: 'hobbies', title: 'Hobbies' },
 ];
 
+const defaultValues = {};
+
 export default function ProfilePage() {
   const { userName } = useParams();
 

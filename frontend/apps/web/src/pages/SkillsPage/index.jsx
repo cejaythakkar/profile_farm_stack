@@ -4,7 +4,7 @@ import FormSection from '../../components/FormSection';
 import { FormComponents } from 'shared-component-library';
 import { useFormikContext, FieldArray } from 'formik';
 import * as yup from 'yup';
-import { DataGrid } from '@mui/x-data-grid';
+import DataGrid from '../../components/DataGrid';
 import GridStyle from '../ProjectsPage/GridStyle';
 import axiosClient from '../../utils/axiosClient';
 
@@ -98,26 +98,7 @@ const SkillsGrid = ({ remove }) => {
 
   return (
     <div>
-      <DataGrid
-        rows={mappedRows}
-        columns={columns}
-        pageSizeOptions={[5]}
-        rowHeight={70}
-        getRowId={(row) => row.gridRowId}
-        rowSelection={false}
-        disableColumnSorting={true}
-        disableColumnFilter={true}
-        sx={GridStyle}
-        onCellKeyDown={(params, event) => {
-          const isInput =
-            event.target.tagName === 'INPUT' ||
-            event.target.tagName === 'TEXTAREA';
-          if (isInput) {
-            event.stopPropagation();
-            event.defaultMuiPrevented = true;
-          }
-        }}
-      />
+      <DataGrid data={mappedRows} columns={columns} rowIdentifier="gridRowId" />
     </div>
   );
 };

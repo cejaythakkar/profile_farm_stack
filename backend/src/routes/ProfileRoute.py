@@ -1,8 +1,11 @@
 from fastapi import APIRouter, HTTPException, status
 from src.config.db import db
 from src.utils.utils import get_response_object
+from src.services.profile_services import getProfileByUserName
 from dotenv import load_dotenv
+from src.config.redis import redis
 import bson
+import json
 
 load_dotenv()
 
@@ -20,45 +23,30 @@ async def getProfile(userName: str):
     print(userName)
     response = {"success": False, "message": "Something went wrong"}
     try:
-        userDetails = await usersCollection.find_one(
-            {"userName": userName}, {"password": 0}
-        )
-        print(userDetails)
-        if userDetails == None:
-            raise HTTPException(
-                status_code=status.HTTP_404_NOT_FOUND,
-                detail=f"User with the name {userName} not found!",
+        cache_key = f"profile:{userName}"
+        cached_data = await redis.get(cache_key)
+        if cached_data:
+            print("=====Cache Hit=====")
+            response = get_response_object(
+                message="Personal Details fetched successfull!",
+                success=True,
+                token=False,
             )
-
-        userDetails["_id"] = str(userDetails["_id"])
-
-        personalDetails = await personalDetailsCollection.find_one(
-            {"userId": userDetails["_id"]}, {"_id": 0}
-        )
-        skills = await skillsCollection.find_one(
-            {"userId": userDetails["_id"]}, {"_id": 0}
-        )
-        experience = experienceCollection.find(
-            {"userId": userDetails["_id"]}, {"_id": 0}
-        )
-        experience = await experience.to_list(length=100);
-        projects = projectsCollection.find(
-            {"userId": userDetails["_id"]}, {"_id": 0}
-        )
-        projects = await projects.to_list(length=100);
-
-        response = get_response_object(
-            message="Personal Details fetched successfull!", success=True, token=False
-        )
-        response["data"] = {
-            "userDetails": userDetails,
-            "personalDetails": personalDetails,
-            "skills": skills,
-            "experiences": experience,
-            "projects": projects,
-        }
+            response["data"] = json.loads(cached_data)
+            return response
+        
+        
+        print("Cache Miss")
+        profile_data = await getProfileByUserName(userName=userName)
+        await redis.set(cache_key,json.dumps(profile_data,default=str))
+        response["data"] = profile_data
     except Exception as e:
         # raise HTTPException(500, get_response_object(message="Something went wrong!", success=False, token=False))
         raise e
     else:
         return response
+
+
+@route.get("/resumeDownload/{userName}")
+async def resumeDownload(userName: str):
+    return {}

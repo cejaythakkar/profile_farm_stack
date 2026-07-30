@@ -7,7 +7,7 @@ import * as yup from 'yup';
 import ProjectsGrid from './ProjectsGrid';
 import AddUpdateProjectForm from './AddUpdateProjectForm';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchProjects } from '../../store/projectsSlice';
+import { fetchProjects, fetchUsersCompanies } from '../../store/projectsSlice';
 import ViewProject from './ViewProject';
 
 const ProjectsPage = () => {
@@ -15,10 +15,14 @@ const ProjectsPage = () => {
   const [modelTitle, setModalTitle] = useState('');
   const dispatch = useDispatch();
   const projectsData = useSelector((state) => state.projects.projectsData);
+  const usersCompanies = useSelector((state) => state.projects.usersCompanies);
   const dataLoading = useSelector((state) => state.ui.dataLoading);
   useEffect(() => {
-    dispatch(fetchProjects());
+    dispatch(fetchUsersCompanies());
   }, [dispatch]);
+  useEffect(() => {
+    if (usersCompanies.length) dispatch(fetchProjects());
+  }, [dispatch, usersCompanies]);
   const handleViewClick = (rowData, name) => {
     switch (name) {
       case 'view':

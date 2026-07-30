@@ -2,6 +2,7 @@ from fastapi import APIRouter, HTTPException, status, Depends,Form, File, Upload
 from src.routes.AuthRoute import get_current_user
 from src.config.db import db
 from src.utils.utils import get_response_object
+from src.services.redis_services import updateRedisCache
 from typing import Optional # Import this for optional type hints
 import json
 import cloudinary
@@ -55,6 +56,7 @@ async def updatePersonalDetails( personalDetails: str = Form(...),
     else:
         data_dict["userId"] = userId
         personalInfoCollection.insert_one(data_dict)
+    await updateRedisCache(userId=userId)
     return get_response_object(
         message="Personal details updated successfuly!", success=True, token=False
     )
@@ -63,6 +65,7 @@ async def updatePersonalDetails( personalDetails: str = Form(...),
 async def getPersonalDetails(userId=Depends(get_current_user)):
 
     expData = await personalInfoCollection.find_one({"userId": userId})
+    
     expData["_id"] = str(expData["_id"])
     response = get_response_object(
         message="Personal Details fetched successfull!", success=True, token=False

@@ -4,7 +4,8 @@ import axiosClient from '../utils/axiosClient'
 
 const initialState = {
     selectedProject: null,
-    projectsData: { projects: [] }
+    projectsData: { projects: [] },
+    usersCompanies: []
 }
 
 const projectsSlice = createSlice({
@@ -21,6 +22,9 @@ const projectsSlice = createSlice({
                 id: project['_id'],
             }));
             state.projectsData = { projects: processedData }
+        },
+        setUsersCompanies(state, action) {
+            state.usersCompanies = action.payload
         }
     }
 })
@@ -30,12 +34,30 @@ export const fetchProjects = () => {
         dispatch(setDataLoading(true))
         const response = await axiosClient.get('/projects')
         const data = response.data.data
-        dispatch(projectsSlice.actions.setProjectsData(data))
+        const transformedData = data.map(project => {
+            let company = {};
+            if (Object.keys(project.company).length) {
+                company = {
+                    label: project.company.company, value: project["_id"],
+                    ...project.company
+                }
+            }
+            return { ...project, company }
+        })
+        dispatch(projectsSlice.actions.setProjectsData(transformedData))
         dispatch(setDataLoading(false))
     }
 }
+
+export const fetchUsersCompanies = () => {
+    return async (dispatch) => {
+        const response = await axiosClient.get('/projects/companies')
+        const data = response.data.data
+        dispatch(projectsSlice.actions.setUsersCompanies(data))
+    }
+}
+
 export const deleteProject = ({ projectId }) => {
-    console.log('projectId', projectId)
     return async (dispatch) => {
         dispatch(setDataLoading(true))
         await axiosClient.delete(`/projects/${projectId}`)

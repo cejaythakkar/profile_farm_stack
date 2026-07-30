@@ -1,0 +1,702 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Jay Thakkar</title>
+
+    <style>
+      /* Reset */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+@page {
+    size: A4;
+    margin: 0;
+}
+
+body {
+    font-family: "Inter", Arial, sans-serif;
+    color: #333;
+    background: white;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+.page {
+    display: flex;
+}
+
+/* =======================
+   LEFT SIDEBAR
+======================= */
+
+.sidebar {
+    width: 30%;
+    background: #1e293b;
+    color: white;
+    padding: 32px 24px;
+}
+
+.profile-photo {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    display: block;
+    margin: 0 auto 24px;
+    object-fit: cover;
+}
+
+.sidebar section {
+    margin-bottom: 28px;
+}
+
+.sidebar h3 {
+    font-size: 15px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid rgba(255,255,255,.25);
+}
+
+.sidebar h4 {
+    font-size: 13px;
+    margin-bottom: 6px;
+}
+
+.sidebar p {
+    margin-bottom: 6px;
+     font-size: 12px;
+    word-break: break-word;
+}
+
+.sidebar ul {
+    list-style: none;
+}
+
+.sidebar li {
+    margin-bottom: 8px;
+}
+
+.social {
+    margin-bottom: 12px;
+}
+
+.sidebar .social-link {
+    overflow-wrap: break-word;
+    word-wrap: break-word;      /* Legacy support */
+    word-break: break-word;
+    white-space: normal;
+    max-width: 100%;
+}
+
+.social strong {
+    display: block;
+    font-size: 13px;
+}
+
+.certification {
+    margin-bottom: 12px;
+}
+
+/* =======================
+   RIGHT CONTENT
+======================= */
+
+.content {
+    width: 70%;
+    padding: 36px;
+}
+
+header {
+    margin-bottom: 28px;
+}
+
+header h1 {
+    font-size: 34px;
+    color: #111827;
+}
+
+header h2 {
+    margin-top: 6px;
+    font-size: 18px;
+    color: #2563eb;
+    font-weight: 500;
+}
+
+/* =======================
+   SECTIONS
+======================= */
+
+section {
+    margin-bottom: 30px;
+}
+
+.content h3 {
+    font-size: 18px;
+    color: #2563eb;
+    margin-bottom: 14px;
+    border-bottom: 2px solid #2563eb;
+    padding-bottom: 6px;
+}
+
+.content h4 {
+    font-size: 15px;
+    color: #111827;
+}
+
+article {
+    margin-bottom: 20px;
+}
+
+/* =======================
+   EXPERIENCE
+======================= */
+
+.title-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 8px;
+}
+
+.title-row h4 {
+    margin-bottom: 2px;
+}
+
+.title-row > div:last-child {
+    color: #666;
+    font-size: 12px;
+    white-space: nowrap;
+}
+
+article p {
+    margin: 8px 0;
+}
+
+article ul {
+    margin-left: 18px;
+}
+
+article li {
+    margin-bottom: 5px;
+}
+
+/* =======================
+   TECH STACK
+======================= */
+
+.tech-stack {
+    margin-top: 10px;
+}
+
+.tech-stack span {
+    display: inline-block;
+    background: #e0edff;
+    color: #2563eb;
+    padding: 4px 10px;
+    border-radius: 30px;
+    margin: 4px 4px 0 0;
+    font-size: 11px;
+}
+
+/* =======================
+   SKILLS
+======================= */
+
+.skill-category {
+    margin-bottom: 16px;
+}
+
+.skill-category ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 6px;
+}
+
+.skill-category li {
+    background: rgba(255,255,255,.15);
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+}
+
+/* =======================
+   LINKS
+======================= */
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+/* =======================
+   PRINT
+======================= */
+
+
+article {
+    /* break-inside: avoid;
+    page-break-inside: avoid; */
+}
+
+section {
+    break-inside: auto;
+    page-break-inside: auto;
+}
+    </style>
+  </head>
+
+  <body>
+    <div class="page">
+      <!-- ================= LEFT SIDEBAR ================= -->
+
+      <aside class="sidebar">
+        
+        <img
+          class="profile-photo"
+          src="https://res.cloudinary.com/league-of-extraordinary-gentlemen/image/upload/v1784079653/user_profiles/user_6a4c0730b7f92778ead44434.jpg"
+          alt="cejaythakkar"
+        />
+        
+
+        
+
+        <section>
+          <h3>Skills</h3>
+
+          
+
+          <div class="skill-category">
+            <h4>Devops</h4>
+
+            <ul>
+              
+
+              <li>Docker</li>
+
+              
+
+              <li>Shell Scripting</li>
+
+              
+
+              <li>Kubernetes</li>
+
+              
+
+              <li>Github Actions</li>
+
+              
+            </ul>
+          </div>
+
+          
+
+          <div class="skill-category">
+            <h4>Tools</h4>
+
+            <ul>
+              
+
+              <li>Git</li>
+
+              
+
+              <li>VS Code</li>
+
+              
+
+              <li>Postman</li>
+
+              
+            </ul>
+          </div>
+
+          
+
+          <div class="skill-category">
+            <h4>Deployment</h4>
+
+            <ul>
+              
+
+              <li>Vercel</li>
+
+              
+
+              <li>Render</li>
+
+              
+
+              <li>Nginx</li>
+
+              
+            </ul>
+          </div>
+
+          
+
+          <div class="skill-category">
+            <h4>Frontend</h4>
+
+            <ul>
+              
+
+              <li>react</li>
+
+              
+
+              <li>next.js</li>
+
+              
+
+              <li>tailwind css</li>
+
+              
+
+              <li>HTML5</li>
+
+              
+
+              <li>css3</li>
+
+              
+            </ul>
+          </div>
+
+          
+
+          <div class="skill-category">
+            <h4>Database</h4>
+
+            <ul>
+              
+
+              <li>MongoDB</li>
+
+              
+
+              <li>PostgreSQL</li>
+
+              
+
+              <li>MySql</li>
+
+              
+
+              <li>Redis</li>
+
+              
+            </ul>
+          </div>
+
+          
+
+          <div class="skill-category">
+            <h4>Cloud & DevOps</h4>
+
+            <ul>
+              
+
+              <li>Docker</li>
+
+              
+
+              <li>Docker Compose</li>
+
+              
+
+              <li>Nginx</li>
+
+              
+
+              <li>Kubernetes</li>
+
+              
+            </ul>
+          </div>
+
+          
+        </section>
+
+         
+
+        <section>
+          <h3>Contact</h3>
+
+           
+          <div>
+            <h4>primary</h4>
+            <p>9978821813</p>
+          </div>
+          
+          <div>
+            <h4>secondary</h4>
+            <p>9427450763</p>
+          </div>
+            
+          
+            <div>
+                <h4>Email</h4>
+                <p>ce.jaythakkar@gmail.com</p>
+            </div>
+        
+           
+           
+        </section>
+
+        
+
+        <section>
+          <h3>Social</h3>
+
+          
+
+          <div class="social">
+            <strong>💼 LinkedIn</strong>
+
+            <div class="social-link">www.linkedin.com/in/jay-thakkar-484099161</div>
+          </div>
+
+          
+
+          <div class="social">
+            <strong>💻 GitHub</strong>
+
+            <div class="social-link">https://github.com/cejaythakkar</div>
+          </div>
+
+          
+
+          <div class="social">
+            <strong>🐳 DockerHub</strong>
+
+            <div class="social-link">https://hub.docker.com/u/cejaythakkar07</div>
+          </div>
+
+          
+
+          <div class="social">
+            <strong>🌐 Portfolio</strong>
+
+            <div class="social-link">/cejaythakkar/profile</div>
+          </div>
+
+          
+
+          <div class="social">
+            <strong>🎨 unsplash</strong>
+
+            <div class="social-link">https://unsplash.com/@cejaythakkar07</div>
+          </div>
+
+          
+
+          <div class="social">
+            <strong>🖼️ pexels</strong>
+
+            <div class="social-link">https://www.pexels.com/@jay-thakkar-670657004/</div>
+          </div>
+
+          
+
+          <div class="social">
+            <strong>📸 instagram</strong>
+
+            <div class="social-link">https://www.instagram.com/webdev_jt/</div>
+          </div>
+
+          
+        </section>
+
+         
+        
+        
+
+        <section>
+          <h3>Languages</h3>
+
+          <ul>
+            
+
+            <li>
+              hindi 
+            </li>
+
+            
+
+            <li>
+              gujarati 
+            </li>
+
+            
+
+            <li>
+              english 
+            </li>
+
+            
+          </ul>
+        </section>
+
+         
+      </aside>
+
+      <!-- ================= MAIN CONTENT ================= -->
+
+      <main class="content">
+        <header>
+          <h1>Jay Thakkar</h1>
+
+          <h2></h2>
+        </header>
+
+         
+        
+        
+
+        <section>
+          <h3>Experience</h3>
+
+          
+
+          <article class="experience">
+            <div class="title-row">
+              <div>
+                <h4>Senior Fullstack Engineer</h4>
+
+                <div>iBaset Pvt. Ltd.</div>
+              </div>
+
+              <div>
+                May-2021 -  Present 
+              </div>
+            </div>
+
+            
+            <div class="rich-text-content"><p><strong>1. Solumina i-Series (Enterprise Manufacturing Application)</strong></p><ul><li><p>Developed and enhanced enterprise-grade frontend features using React.js.</p></li><li><p>Built and maintained reusable components for the organization's shared component library, improving UI consistency and accelerating feature development.</p></li><li><p>Integrated REST APIs and implemented scalable state management using Redux, Redux Saga, React Context, and Hooks.</p></li><li><p>Worked within a monorepo architecture, collaborating with cross-functional teams to deliver scalable and maintainable solutions.</p></li><li><p>Contributed to improving application performance, code quality, and component reusability.</p></li></ul><p><strong>2. Notification Server &amp; JSReport Server (Node.js Microservices)</strong></p><ul><li><p>Designed, developed, and maintained business-critical Node.js microservices supporting enterprise workflows.</p></li><li><p>Contributed to the architectural design and implementation of scalable backend services.</p></li><li><p>Developed migration scripts to migrate data from MongoDB to SQL while ensuring data integrity and minimal downtime.</p></li><li><p>Implemented Swagger/OpenAPI documentation to improve API usability and simplify integrations.</p></li><li><p>Collaborated with the Cyber Security team to remediate VAPT and Snyk vulnerabilities, enhancing platform security.</p></li><li><p>Deployed and maintained services on on-premises Linux infrastructure using Docker, Kubernetes, and Shell scripting.</p></li><li><p>Supported production deployments, troubleshooting, and continuous platform improvements.</p></li></ul><p><strong>3. Configurator Tool (JSON-Based Dashboard Platform)</strong></p><ul><li><p>Played a key role in designing and developing a JSON-driven dashboard configuration platform.</p></li><li><p>Contributed to the architectural design of the platform to support scalable and configurable enterprise solutions.</p></li><li><p>Developed reusable UI components to accelerate feature delivery and improve maintainability.</p></li><li><p>Collaborated with product and engineering teams to deliver reliable, extensible, and user-centric solutions.</p></li></ul><p><strong>4. Customer Success &amp; Technical Leadership</strong></p><ul><li><p>Serve as the technical owner for the Notification Server, JSReport Server, and Configurator Tool.</p></li><li><p>Work directly with enterprise customers to implement complex JSON-based configurations and resolve production issues.</p></li><li><p>Conduct Knowledge Transfer (KT) sessions and mentor new engineers, enabling faster onboarding and effective knowledge sharing.</p></li><li><p>Collaborate with cross-functional teams to deliver reliable enterprise solutions and continuously improve customer experience.</p></li><li><p>Drive continuous improvements by identifying opportunities to enhance system performance, maintainability, and operational efficiency.</p></li></ul><p></p></div>
+             
+          </article>
+
+          
+
+          <article class="experience">
+            <div class="title-row">
+              <div>
+                <h4>Fullstack Developer</h4>
+
+                <div>Cygnet Infotech Pvt. Ltd.</div>
+              </div>
+
+              <div>
+                Jul-2019 -  May-2021 
+              </div>
+            </div>
+
+            
+            <div class="rich-text-content"><p><strong>1. J2 Global (Enterprise Web Platform)</strong></p><ul><li><p>Served as the Lead Full Stack Developer, driving end-to-end feature development across frontend and backend.</p></li><li><p>Designed and developed scalable web applications using <strong>Node.js, React.js, and Redux</strong>.</p></li><li><p>Collaborated with cross-functional teams to deliver high-quality features aligned with business requirements.</p></li><li><p>Integrated REST APIs and implemented reusable, maintainable application components.</p></li><li><p>Mentored team members and participated in code reviews to maintain coding standards and application quality.</p></li></ul><p><strong>2. Catalyst Console (Enterprise Administration Platform)</strong></p><ul><li><p>Led frontend development for a React-based enterprise console, delivering scalable and user-friendly interfaces.</p></li><li><p>Developed reusable React components and implemented efficient state management using Redux.</p></li><li><p>Wrote comprehensive unit tests using <strong>Jest</strong> and <strong>Enzyme</strong>, improving application reliability and reducing regression issues.</p></li><li><p>Built and maintained UI components using <strong>Storybook</strong>, promoting component reusability and design consistency.</p></li><li><p>Worked closely with backend developers, QA teams, and stakeholders to deliver high-quality releases.</p></li></ul><p><strong>3. </strong><a target="_blank" rel="noopener noreferrer nofollow" href="http://Genes2Teens.com"><strong>Genes2Teens.com</strong></a><strong> (Healthcare &amp; Wellness Platform)</strong></p><ul><li><p>Served as the Lead Full Stack Developer, delivering new features across both frontend and backend.</p></li><li><p>Developed responsive user interfaces using <strong>React.js</strong> and implemented backend services with <strong>Node.js</strong>.</p></li><li><p>Designed and integrated REST APIs to enable seamless communication between frontend and backend systems.</p></li><li><p>Optimized application performance and enhanced user experience through clean, maintainable code.</p></li><li><p>Collaborated with stakeholders to translate business requirements into scalable technical solutions.</p></li></ul><p><strong>Core Technologies:</strong> Node.js, React.js, Redux, JavaScript, REST APIs, Jest, Enzyme, Storybook, HTML5, CSS3, Git.</p></div>
+             
+          </article>
+
+          
+
+          <article class="experience">
+            <div class="title-row">
+              <div>
+                <h4>Frontend Developer</h4>
+
+                <div>Asite Solutions India Pvt. Ltd.</div>
+              </div>
+
+              <div>
+                Jul-2014 -  Jun-2018 
+              </div>
+            </div>
+
+            
+            <div class="rich-text-content"><p><strong>Adoddle (Enterprise Construction Collaboration Platform)</strong></p><ul><li><p>Served as a Frontend Developer, contributing to the development of an enterprise SaaS platform for construction project collaboration and document management.</p></li><li><p>Developed and maintained core product modules including Projects, Files, Bulk File Upload, Chunked File Upload, Custom File Attributes, and Project Folder Structure Copy.</p></li><li><p>Owned the File Upload with Custom Attributes module, delivering an end-to-end solution that enabled configurable document metadata and improved document organization and searchability.</p></li><li><p>Engineered a reliable chunked file upload mechanism to support large file transfers, enhancing upload stability and overall user experience.</p></li><li><p>Led frontend code refactoring initiatives by introducing reusable components, JavaScript best practices, and design patterns that improved code quality and maintainability.</p></li><li><p>Collaborated with product managers, backend developers, and QA engineers to deliver scalable features, production enhancements, and bug fixes in an Agile environment.</p></li></ul><p><strong>Workflow Management (Business Process Automation)</strong></p><ul><li><p>Developed workflow management capabilities that enabled business process automation and real-time collaboration within the Adoddle platform.</p></li><li><p>Built interactive workflow interfaces using AngularJS and SASS, focusing on usability, scalability, and maintainability.</p></li><li><p>Implemented WebSocket-based real-time communication to synchronize workflow updates instantly across connected users.</p></li><li><p>Developed reusable UI components and optimized application performance while ensuring cross-browser compatibility for enterprise users.</p></li><li><p>Worked closely with cross-functional teams to deliver reliable workflow features that improved operational efficiency and user collaboration.</p></li></ul><p><strong>Core Technologies:</strong> JavaScript, jQuery, AngularJS, HTML5, CSS3, SASS, AJAX, WebSockets, Git.</p></div>
+             
+          </article>
+
+          
+
+          <article class="experience">
+            <div class="title-row">
+              <div>
+                <h4>UI Developer</h4>
+
+                <div>Plumslice Labs Pvt. Ltd. ( Digitalwave Pvt. Ltd )</div>
+              </div>
+
+              <div>
+                jun-2018 -  jul-2019 
+              </div>
+            </div>
+
+            
+            <div class="rich-text-content"><p><strong>FirstHandle (Marketing Automation Platform)</strong></p><ul><li><p>Served as a UI Developer, contributing to the development of a marketing automation platform from the ground up.</p></li><li><p>Architected and developed the frontend using React and Redux, establishing a scalable foundation for future product enhancements.</p></li><li><p>Designed and implemented reusable React components and efficient state management, improving application maintainability and performance.</p></li><li><p>Built responsive, interactive user interfaces with a strong focus on usability, scalability, and clean application architecture.</p></li><li><p>Collaborated with backend developers, product managers, and QA teams to deliver high-quality features throughout the software development lifecycle.</p></li></ul><p><strong>WeeGreen Campaign (Marketing Campaign Management Platform)</strong></p><ul><li><p>Developed responsive campaign management interfaces using Angular 4, delivering scalable and user-friendly web applications.</p></li><li><p>Designed and implemented a multi-tenant theming engine using Stylus, Pug, and Jade, enabling configurable client-specific branding and customization.</p></li><li><p>Built reusable UI components and optimized application performance to ensure a consistent user experience across deployments.</p></li><li><p>Worked closely with cross-functional teams to deliver new features, enhancements, and production releases in an Agile environment.</p></li></ul><p><strong>WeeGreen Marketplace (E-commerce Platform)</strong></p><ul><li><p>Developed key marketplace features including catalog upload, catalog download, catalog listing with pagination, and real-time notifications.</p></li><li><p>Built responsive user interfaces using JavaScript, jQuery, HTML5, and CSS3, focusing on performance and usability.</p></li><li><p>Implemented reusable frontend components and contributed to improving application architecture and maintainability.</p></li><li><p>Collaborated with backend engineers and QA teams to deliver scalable e-commerce capabilities and production-ready releases.</p></li></ul><p><strong>WeeGreen Web (Corporate Web Platform)</strong></p><ul><li><p>Contributed to the development and maintenance of the company's web platform, delivering responsive and interactive user interfaces.</p></li><li><p>Implemented frontend features using JavaScript, jQuery, Handlebars, HTML5, and CSS3 while ensuring cross-browser compatibility and performance.</p></li><li><p>Participated in frontend modernization and refactoring initiatives by introducing reusable components and JavaScript best practices.</p></li><li><p>Worked with cross-functional teams to deliver new features, bug fixes, and continuous product improvements.</p></li></ul><p><strong>Core Technologies:</strong> React, Redux, Angular 4, JavaScript, jQuery, HTML5, CSS3, SCSS, Stylus, Pug, Jade, Handlebars, Node.js, Git.</p></div>
+             
+          </article>
+
+          
+        </section>
+
+         
+
+        <section>
+          <h3>Projects</h3>
+
+          
+
+          <article>
+            <h4>My Protfolio</h4>
+
+            <p><h1>Portfolio Builder Platform (Personal SaaS)</h1><p>Designed and developed a <strong>full-stack SaaS platform</strong> that enables professionals to create, manage, and publish their own portfolio websites without writing any code. The platform provides a centralized dashboard for managing profile information while automatically generating a responsive, production-ready portfolio website with real-time updates.</p><h3>Key Contributions</h3><ul><li><p><strong>Independently architected, designed, and developed the entire application</strong>, taking complete ownership from product ideation through development, deployment, and continuous enhancement.</p></li><li><p>Designed a <strong>scalable system architecture</strong>, including database schema, REST API design, application workflows, and modular project structure to ensure maintainability and future extensibility.</p></li><li><p>Built a <strong>modern, reusable, component-based frontend</strong> using React, delivering a responsive, intuitive, and user-friendly experience across desktop and mobile devices.</p></li><li><p>Developed a comprehensive <strong>dashboard</strong> enabling users to perform complete CRUD operations for:</p><ul><li><p>Personal Information</p></li><li><p>Professional Experience</p></li><li><p>Projects</p></li><li><p>Technical Skills</p></li><li><p>Education</p></li><li><p>Contact Information</p></li><li><p>Social Profiles</p></li></ul></li><li><p>Implemented a <strong>real-time content management workflow</strong>, ensuring every update made through the dashboard is instantly reflected on the user's public portfolio without requiring manual website updates.</p></li><li><p>Engineered a modular backend using <strong>Python (FastAPI)</strong>, following clean architecture principles with well-structured REST APIs and clear separation of concerns.</p></li><li><p>Designed and optimized <strong>MongoDB document models and collections</strong> to support efficient querying, flexible data relationships, and long-term scalability.</p></li><li><p>Implemented comprehensive <strong>server-side validation, exception handling, and standardized API responses</strong> to maintain data integrity and provide a reliable user experience.</p></li><li><p>Followed <strong>component-driven development</strong> and reusable coding practices across both frontend and backend, resulting in a scalable and maintainable codebase.</p></li><li><p>Managed the complete deployment pipeline by hosting the frontend on <strong>Vercel</strong> and integrating it seamlessly with backend APIs and services.</p></li><li><p>Owned the <strong>entire software development lifecycle (SDLC)</strong>, including:</p><ul><li><p>Requirement gathering</p></li><li><p>Feature planning</p></li><li><p>System architecture</p></li><li><p>UI/UX implementation</p></li><li><p>Frontend development</p></li><li><p>Backend development</p></li><li><p>Database design</p></li><li><p>Testing</p></li><li><p>Deployment</p></li><li><p>Continuous enhancements</p></li></ul></li></ul><h3>Key Highlights</h3><ul><li><p>✅ Full-Stack SaaS Application</p></li><li><p>✅ Complete Product Ownership</p></li><li><p>✅ Responsive &amp; Mobile-First Design</p></li><li><p>✅ Real-Time Portfolio Updates</p></li><li><p>✅ Modular &amp; Scalable Architecture</p></li><li><p>✅ Reusable Component-Based Development</p></li><li><p>✅ RESTful API Development</p></li><li><p>✅ Production Deployment</p></li></ul><h3>Technologies</h3><p><strong>React.js • JavaScript • FastAPI • Python • MongoDB • REST APIs • HTML5 • CSS3 • Responsive Design • Component-Based Architecture • Vercel • Git</strong></p></p>
+
+            
+          </article>
+
+          
+
+          <article>
+            <h4>FirstHandle – Marketing Automation Platform</h4>
+
+            <p><p>Contributed to the development of <strong>FirstHandle</strong>, a marketing automation platform, by building a scalable and responsive frontend using <strong>React</strong> and <strong>Redux</strong>. Played a key role in developing reusable UI components, integrating backend services, and delivering a seamless user experience for marketing campaign management.</p><h3>Key Contributions</h3><ul><li><p>Built the frontend application from the ground up using <strong>React</strong> and <strong>Redux</strong>, establishing a scalable, component-driven architecture for future feature development.</p></li><li><p>Developed reusable and maintainable UI components, improving code consistency, reducing duplication, and accelerating development.</p></li><li><p>Designed and implemented responsive, user-friendly interfaces that provided a consistent experience across multiple screen sizes and devices.</p></li><li><p>Collaborated closely with backend engineers to integrate <strong>RESTful APIs</strong>, ensuring smooth communication between frontend and backend services.</p></li><li><p>Implemented centralized state management using <strong>Redux</strong>, enabling predictable application state, improved maintainability, and easier debugging.</p></li><li><p>Optimized application performance by minimizing unnecessary component re-renders, improving state updates, and enhancing overall responsiveness.</p></li><li><p>Participated in feature planning, requirement discussions, implementation, debugging, and production issue resolution throughout the development lifecycle.</p></li><li><p>Followed modern frontend development best practices, including modular code organization, reusable component design, and clean coding standards.</p></li></ul><h3>Key Highlights</h3><ul><li><p>✅ Frontend Development from Scratch</p></li><li><p>✅ React &amp; Redux Architecture</p></li><li><p>✅ Responsive UI Development</p></li><li><p>✅ Reusable Component Design</p></li><li><p>✅ REST API Integration</p></li><li><p>✅ Performance Optimization</p></li><li><p>✅ Cross-Team Collaboration</p></li><li><p>✅ Scalable Frontend Architecture</p></li></ul><h3>Technologies</h3><p><strong>React.js • Redux • JavaScript • HTML5 • CSS3 • REST APIs • Responsive Design • Component-Based Architecture • Git</strong></p></p>
+
+            
+          </article>
+
+          
+
+          <article>
+            <h4>Frontend Modernization & Code Quality Initiative</h4>
+
+            <p><p>Initiated and drove frontend code quality improvements across multiple modules to increase maintainability and developer productivity.</p><ul><li><p>Led several code refactoring initiatives by introducing reusable components and modular JavaScript architecture.</p></li><li><p>Applied JavaScript best practices and established design patterns to reduce code duplication and improve readability.</p></li><li><p>Standardized frontend implementation across multiple modules, making future feature development faster and easier.</p></li><li><p>Optimized application performance by identifying bottlenecks and simplifying complex UI logic.</p></li><li><p>Collaborated with team members to promote maintainable coding standards across the project.</p></li></ul><p></p></p>
+
+            
+          </article>
+
+          
+
+          <article>
+            <h4>WeeGreen Campaign</h4>
+
+            <p><p>Developed campaign management features for <strong>WeeGreen Campaign</strong>, enabling businesses to create and manage digital marketing campaigns efficiently.</p><ul><li><p>Built interactive and responsive user interfaces using <strong>Angular 4</strong>.</p></li><li><p>Developed reusable components and optimized application performance for a smooth user experience.</p></li><li><p>Implemented a <strong>custom theme engine</strong> using <strong>Stylus</strong> and <strong>Jade</strong>, allowing multiple clients to have their own branded experience without changing application logic.</p></li><li><p>Worked closely with backend developers to integrate APIs and ensure seamless campaign management workflows.</p></li><li><p>Participated in feature enhancements, bug fixes, and continuous product improvements.</p></li></ul><p></p></p>
+
+            
+          </article>
+
+          
+        </section>
+
+           
+      </main>
+    </div>
+  </body>
+</html>

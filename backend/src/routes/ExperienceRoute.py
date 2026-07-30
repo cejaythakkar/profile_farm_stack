@@ -4,6 +4,8 @@ from src.routes.AuthRoute import get_current_user
 from src.config.db import db
 from src.utils.utils import get_response_object
 import bson
+from datetime import datetime
+from src.services.redis_services import updateRedisCache
 
 experienceCollection = db["experience"]
 route = APIRouter(prefix="/api/v1/experience", tags=["Experience"])
@@ -15,6 +17,7 @@ async def addExperience(expData: ExperienceModel, userId=Depends(get_current_use
     expData["userId"] = userId
 
     experienceCollection.insert_one(expData)
+    await updateRedisCache(userId=userId)
     return get_response_object(
         message="Experience added successfuly!", success=True, token=False
     )
@@ -29,14 +32,21 @@ async def getExperience(userId=Depends(get_current_user)):
         if "_id" in exp:
             exp["_id"] = str(exp["_id"])
 
+    expData.sort(
+        key=lambda p: (datetime.strptime(p["fromDate"], "%b-%Y")),
+        reverse=True,
+    )
     response = get_response_object(
         message="Experiences fetch successfull!", success=True, token=False
     )
     response["data"] = expData
     return response
 
+
 @route.put("/{expId}")
-async def getExperience(expId: str,expData: ExperienceModel, userId=Depends(get_current_user)):
+async def getExperience(
+    expId: str, expData: ExperienceModel, userId=Depends(get_current_user)
+):
     expObjectId = bson.ObjectId(expId)
     exp = await experienceCollection.find_one({"_id": expObjectId})
     print(exp)
@@ -47,12 +57,13 @@ async def getExperience(expId: str,expData: ExperienceModel, userId=Depends(get_
     data_dict = dict(expData)
     # print(f"data_dict -> {data_dict['_id']}")
     experienceCollection.update_one({"_id": expObjectId}, {"$set": data_dict})
-
+    await updateRedisCache(userId=userId)
     response = get_response_object(
         message="Experience Deleted successfully!", success=True, token=False
     )
 
     return response
+
 
 @route.delete("/{expId}")
 async def getExperience(expId: str, userId=Depends(get_current_user)):
