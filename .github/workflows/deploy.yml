@@ -16,15 +16,13 @@ jobs:
           username: ${{ secrets.EC2_USERNAME }}
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
-            # 1. Safely clone using an absolute path string format
+            # 1. We read the repository via the clean $GITHUB_REPOSITORY system flag
             if [ ! -d "my-project" ]; then
-              git clone "https://github.com{{ github.repository }}.git" my-project
+              git clone "https://github.com{GITHUB_REPOSITORY}.git" my-project
             fi
             
-            # Move inside the directory immediately before running file setups
             cd my-project
             
-            # Clear any local differences and pull fresh code from GitHub safely
             git reset --hard origin/main
             git pull origin main
 
