@@ -27,6 +27,7 @@ async def updatePersonalDetails( personalDetails: str = Form(...),
     profileImage: Optional[UploadFile] = File(None),
     userId = Depends(get_current_user)):
     
+    
     data_dict = json.loads(personalDetails)
     
     if profileImage:

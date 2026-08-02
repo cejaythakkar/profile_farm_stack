@@ -23,7 +23,7 @@ const initialData = { academics: [] };
 const Form = ({ remove }) => {
   const { values, setFieldValue } = useFormikContext();
 
-  return values.academics.map((item, index) => {
+  return values?.academics?.map((item, index) => {
     return (
       <>
         <div className={`flex flex-col py-1 ml-3 items-end`}>
