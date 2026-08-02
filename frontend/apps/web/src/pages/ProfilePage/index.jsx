@@ -9,14 +9,18 @@ import AboutSection from './AboutSection';
 import ExperienceSection from './ExperienceSection';
 import SkillsSection from './SkillsSection';
 import ProfilePageSection from './ProfilePageSection';
-import {LoadingScreen} from 'shared-component-library'
+import AcademicsSection from './AcademicsSection';
+import CareerSummary from './CareerSummary';
+import { LoadingScreen } from 'shared-component-library';
 import Card from './Card';
 
 const sections = [
   { id: 'about', title: 'About' },
+  { id: 'summary', title: 'Career Summary' },
   { id: 'projects', title: 'Projects' },
   { id: 'experience', title: 'Experience' },
   { id: 'skills', title: 'Skills' },
+  { id: 'academics', title: 'Academics' },
   { id: 'languages', title: 'Languages' },
   { id: 'contact', title: 'Contact' },
   { id: 'social', title: 'Social' },
@@ -40,16 +44,26 @@ export default function ProfilePage() {
     if (userName) load();
   }, [userName]);
 
-  if (!profile)
-    return (
-     <LoadingScreen />
-    );
+  if (!profile) return <LoadingScreen />;
 
-  const { personalDetails, experiences, skills, projects } = profile;
+  const {
+    personalDetails,
+    experiences,
+    skills,
+    projects,
+    careerHighlights = { title: [], summary: '' },
+    currentStatus = {},
+    academics: { academics } = [],
+  } = profile;
 
   return (
     <div className="bg-slate-50 min-h-screen">
-      <HeroSection personalDetails={personalDetails} userName={userName} />
+      <HeroSection
+        personalDetails={personalDetails}
+        title={careerHighlights.title}
+        userName={userName}
+        currentStatus={currentStatus}
+      />
 
       <MobileNavigation sections={sections} />
 
@@ -65,6 +79,9 @@ export default function ProfilePage() {
 
           <AboutSection personalDetails={personalDetails} />
 
+          {/* Career Summary */}
+
+          <CareerSummary summary={careerHighlights.summary} />
           {/* PROJECTS */}
 
           <ProjectsSection projects={projects} />
@@ -76,6 +93,10 @@ export default function ProfilePage() {
           {/* SKILLS */}
 
           <SkillsSection skills={skills} />
+
+          {/* Academics */}
+
+          <AcademicsSection academicsData={academics} />
 
           {/* LANGUAGES */}
 

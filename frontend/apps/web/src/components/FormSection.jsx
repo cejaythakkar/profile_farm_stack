@@ -1,9 +1,13 @@
-const AuxButtons = ({ push, addButtonText }) =>
+const AuxButtons = ({
+  push,
+  addButtonText,
+  addButtonClickHandler = () => push({ type: '', number: '' }),
+}) =>
   push ? (
     <div className="flex gap-x-4">
       <button
         type="button"
-        onClick={() => push({ type: '', number: '' })}
+        onClick={addButtonClickHandler}
         className="transition-all duration-200 rounded border border-blue-600 px-4 py-1.5 text-sm font-medium bg-blue-700 text-white hover:bg-white hover:text-blue-700 hover:ring-2 hover:ring-blue-600"
       >
         {addButtonText}
@@ -13,7 +17,13 @@ const AuxButtons = ({ push, addButtonText }) =>
     <></>
   );
 
-const FormSection = ({ children, title, push, addButtonText = '' }) => {
+const FormSection = ({
+  children,
+  title,
+  push,
+  addButtonText = '',
+  addButtonClickHandler = () => {},
+}) => {
   return (
     <div className={`flex-wrap mb-6`}>
       <div className="flex gap-x-4 pb-2 border-b border-gray-500">
@@ -22,6 +32,7 @@ const FormSection = ({ children, title, push, addButtonText = '' }) => {
           <AuxButtons
             addButtonText={addButtonText}
             push={push}
+            addButtonClickHandler={addButtonClickHandler}
           />
         </div>
       </div>

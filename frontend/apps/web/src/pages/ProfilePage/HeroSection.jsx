@@ -8,7 +8,7 @@ const quotes = [
   'Clean code is a feature.',
 ];
 
-const HeroSection = ({ personalDetails, userName }) => {
+const HeroSection = ({ personalDetails, userName, title, currentStatus }) => {
   const [quote, setQuote] = useState(quotes[0]);
   useEffect(() => {
     const timer = setInterval(() => {
@@ -55,18 +55,28 @@ const HeroSection = ({ personalDetails, userName }) => {
 
         {/* Position */}
 
-        <p
+        <h2
           className="
-        mt-3
-        text-base
-        sm:text-lg
-        md:text-xl
-        text-slate-300
+        my-3
+        text-2xl
+        font-bold
+
+        text-white
       "
         >
-          Senior Full Stack Developer
-        </p>
+          {currentStatus.position} @ {currentStatus.company}
+        </h2>
+        {/* Title */}
 
+        <div className="title-container m-2">
+          {title.reduce((prevValue, currentValue, index) => {
+            prevValue =
+              index == title.length - 1
+                ? `${prevValue} | ${currentValue.value} | `
+                : `${prevValue} | ${currentValue.value}`;
+            return prevValue;
+          }, '')}
+        </div>
         {/* Quote */}
 
         <p
@@ -91,7 +101,7 @@ const HeroSection = ({ personalDetails, userName }) => {
 
         <div
           className="
-        mt-8
+        mt-4
         flex
         flex-col
         sm:flex-row
@@ -104,17 +114,18 @@ const HeroSection = ({ personalDetails, userName }) => {
         text-slate-300
       "
         >
+          <span className="hidden sm:block text-slate-500">•</span>
           <span className="flex items-center gap-2">
             📧 {personalDetails.email}
           </span>
 
           <span className="hidden sm:block text-slate-500">•</span>
 
-          <span>🌍 {personalDetails.nationality}</span>
+          {/* <span>🌍 {personalDetails.nationality}</span> */}
 
-          <span className="hidden sm:block text-slate-500">•</span>
+          {/* <span className="hidden sm:block text-slate-500">•</span>
 
-          <span>📍 Ahmedabad, India</span>
+          <span>📍 Ahmedabad, India</span> */}
         </div>
 
         {/* CTA Buttons */}

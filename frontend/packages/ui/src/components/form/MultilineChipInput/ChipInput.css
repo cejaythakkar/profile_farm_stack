@@ -1,0 +1,34 @@
+@reference "tailwindcss";
+.multi-line-chip-input-wrapper .selectBox-container .selectBox__control {
+
+    @apply bg-transparent px-3 py-1.5 h-[150px] border border-gray-400 w-full
+}
+.multi-line-chip-input-wrapper .selectBox-container .selectBox__control .selectBox__value-container{
+
+    @apply p-0 h-full items-stretch flex-wrap grid-rows-[minmax(0,1fr)]
+}
+.multi-line-chip-input-wrapper .selectBox-container .selectBox__control .selectBox__value-container .selectBox__placeholder{
+
+    @apply flex items-center h-[30px]
+}
+.multi-line-chip-input-wrapper .selectBox-container .selectBox__control .selectBox__multi-value{
+    @apply bg-transparent border border-white flex h-[30px] items-center my-0 mr-1
+}
+.multi-line-chip-input-wrapper .selectBox-container .selectBox__control .selectBox__input-container{
+    @apply h-[30px] flex text-white
+}
+.multi-line-chip-input-wrapper .selectBox-container .selectBox__control .selectBox__input-container{
+    @apply text-white
+}
+.multi-line-chip-input-wrapper .selectBox-container .selectBox__control .selectBox__multi-value .selectBox__multi-value__label{
+    @apply text-white flex items-center
+}
+.multi-line-chip-input-wrapper .selectBox-container .selectBox__menu{
+    @apply bg-white text-gray-900
+}
+.multi-line-chip-input-wrapper .selectBox-container .selectBox__multi-value__remove{
+    @apply h-full
+}
+.multi-line-chip-input-wrapper .selectBox-container .selectBox__multi-value__remove:hover{
+    @apply bg-blue-700 text-white
+}

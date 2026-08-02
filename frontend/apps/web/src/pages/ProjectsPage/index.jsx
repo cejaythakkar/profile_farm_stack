@@ -47,7 +47,8 @@ const ProjectsPage = () => {
           {({ remove, push }) => (
             <FormSection
               title={'Projects'}
-              push={() => {
+              push={true}
+              addButtonClickHandler={() => {
                 // push({ skillGroupTitle: '', skills: [] });
                 setModalTitle('Add Project');
                 setIsModalOpen(true);

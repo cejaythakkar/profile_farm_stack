@@ -249,6 +249,50 @@ section {
     break-inside: auto;
     page-break-inside: auto;
 }
+
+.career-summary p {
+    margin: 8px 0;
+}
+.content header h3{
+    border-bottom: none;
+    padding: 0;
+}
+
+.academics-list {
+  list-style: circle;
+  counter-reset: course-counter;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 0 0 0 15px;
+}
+.academic-item {
+  counter-increment: course-counter;
+  position: relative;
+  width: 100%;
+  box-sizing: border-box;
+}
+.meta-info {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px; /* Space between text and dots */
+  color: #94a3b8; /* Muted text color */
+  font-size: 0.875rem;
+}
+
+/* Add a dot after every span except the last one */
+.meta-info span::before {
+  content: "•";
+  margin-right: 8px;
+  opacity: 0.7;
+  color: #94a3b8;
+  font-size: 1rem;
+  line-height: 1;
+}
+
     </style>
   </head>
 
@@ -263,9 +307,7 @@ section {
           src="https://res.cloudinary.com/league-of-extraordinary-gentlemen/image/upload/v1784079653/user_profiles/user_6a4c0730b7f92778ead44434.jpg"
           alt="cejaythakkar"
         />
-        
-
-        
+         
 
         <section>
           <h3>Skills</h3>
@@ -425,7 +467,108 @@ section {
           
         </section>
 
-         
+        
+
+        <section>
+          <h3>Academics</h3>
+          <!-- Loop through Academics Data -->
+          <ol class="academics-list">
+            
+            <li class="academic-item">
+              <!-- Course Heading -->
+              <h4 class="course-title">Masters of Computer Application</h4>
+
+              <!-- Detail Badges / Chips -->
+              <div class="meta-info">
+                <span class="">2014</span>
+
+                
+                <span class="">Indus Institute of Computer Application</span>
+                
+
+                <span class="">Gujarat Technological University</span>
+                <span class="">Grade: 60%</span>
+              </div>
+            </li>
+            
+            <li class="academic-item">
+              <!-- Course Heading -->
+              <h4 class="course-title">Bachelors of Computer Application</h4>
+
+              <!-- Detail Badges / Chips -->
+              <div class="meta-info">
+                <span class="">2011</span>
+
+                
+                <span class="">R.J Tibrewal of Computer Application</span>
+                
+
+                <span class="">Gujarat University</span>
+                <span class="">Grade: 61%</span>
+              </div>
+            </li>
+            
+            <li class="academic-item">
+              <!-- Course Heading -->
+              <h4 class="course-title">12th Boards ( Commerce ) </h4>
+
+              <!-- Detail Badges / Chips -->
+              <div class="meta-info">
+                <span class="">2008</span>
+
+                
+                <span class="">Shree Sahajanand Higher Secondary School</span>
+                
+
+                <span class="">Gujarat Board</span>
+                <span class="">Grade: 61%</span>
+              </div>
+            </li>
+            
+            <li class="academic-item">
+              <!-- Course Heading -->
+              <h4 class="course-title">10th boards</h4>
+
+              <!-- Detail Badges / Chips -->
+              <div class="meta-info">
+                <span class="">2006</span>
+
+                
+                <span class="">Shree Sahajanand Secondary School</span>
+                
+
+                <span class="">Gujarat Board</span>
+                <span class="">Grade: 60%</span>
+              </div>
+            </li>
+            
+          </ol>
+        </section>
+
+        <section>
+          <h3>Personal Details</h3>
+
+          
+          <div>
+            <h4>Date of Birth</h4>
+            
+            <p>19-04-1990</p>
+          </div>
+
+           
+          <div>
+            <h4>Nationality</h4>
+            <p>Indian</p>
+          </div>
+
+           
+          <div>
+            <h4>Permanent Address</h4>
+            <p>56, Sabandh Twins, Bh. Guru Govindsingh Dham, Thaltej, 380054, Ahmedabad, Gujarat.</p>
+          </div>
+
+          
+        </section>
 
         <section>
           <h3>Contact</h3>
@@ -441,17 +584,36 @@ section {
             <p>9427450763</p>
           </div>
             
-          
-            <div>
-                <h4>Email</h4>
-                <p>ce.jaythakkar@gmail.com</p>
-            </div>
+          <div>
+            <h4>Email</h4>
+            <p>ce.jaythakkar@gmail.com</p>
+          </div>
+
+            
+        </section>
         
-           
-           
+
+        <section>
+          <h3>Languages</h3>
+
+          <ul>
+            
+
+            <li>hindi</li>
+
+            
+
+            <li>gujarati</li>
+
+            
+
+            <li>english</li>
+
+            
+          </ul>
         </section>
 
-        
+         
 
         <section>
           <h3>Social</h3>
@@ -516,36 +678,6 @@ section {
         </section>
 
          
-        
-        
-
-        <section>
-          <h3>Languages</h3>
-
-          <ul>
-            
-
-            <li>
-              hindi 
-            </li>
-
-            
-
-            <li>
-              gujarati 
-            </li>
-
-            
-
-            <li>
-              english 
-            </li>
-
-            
-          </ul>
-        </section>
-
-         
       </aside>
 
       <!-- ================= MAIN CONTENT ================= -->
@@ -553,13 +685,62 @@ section {
       <main class="content">
         <header>
           <h1>Jay Thakkar</h1>
-
-          <h2></h2>
+          <h3 style="margin: 3px 0">
+            Senior Fullstack Engineer @ iBaset Pvt. Ltd.
+          </h3>
+          <div class="headline">
+              |
+            <strong>Architect</strong>
+               |
+            <strong>Solution Architect</strong>
+               |
+            <strong>Node.js</strong>
+               |
+            <strong>React</strong>
+               |
+            <strong>React-Redux</strong>
+               |
+            <strong>Devops</strong>
+               |
+            <strong>Aws</strong>
+               |
+            <strong>Css</strong>
+               |
+            <strong>Scss</strong>
+               |
+            <strong>Tailwind</strong>
+               |
+            <strong>Python</strong>
+               |
+            <strong>Fastapi</strong>
+               |
+            <strong>SQL</strong>
+               |
+            <strong>MongoDb</strong>
+               |
+            <strong>Linux</strong>
+               |
+            <strong>Javascript</strong>
+               |
+            <strong>Html</strong>
+               |
+            <strong>Frontend</strong>
+               |
+            <strong>Backend</strong>
+               |
+            <strong>Fullstack Engineer</strong> |  
+          </div>
         </header>
 
+        
+
+        <section>
+          <h3>Professional Summary</h3>
+
+          <div class="career-summary"><p>I'm a Senior Full Stack Developer with 12+ years of experience building and maintaining enterprise software. Throughout my career, I've had the opportunity to grow across multiple engineering disciplines—from frontend development to backend microservices, platform engineering, DevOps, security, and customer-facing technical consulting.</p><p></p><p>I began by developing enterprise applications with React.js, building reusable components for a shared component library and delivering scalable, maintainable user interfaces using React, Redux, Redux Saga, React Context, Hooks, and REST APIs.</p><p></p><p>As my responsibilities grew, I transitioned into backend engineering, where I now design, develop, and maintain Node.js-based microservices, including the Notification Server, JSReport Server, and Configurator Tool. I've contributed to architectural decisions, implemented Swagger/OpenAPI documentation, and developed migration scripts to successfully move services from MongoDB to SQL.</p><p></p><p>Beyond application development, I enjoy solving platform-level challenges. I've worked closely with cybersecurity teams to remediate VAPT and Snyk vulnerabilities, deployed applications on on-premises Linux environments using Docker and Kubernetes, and supported production systems throughout their lifecycle.</p><p></p><p>One of the most rewarding parts of my journey has been working directly with enterprise customers. I help clients configure complex JSON-based solutions, troubleshoot production issues, and mentor new engineers through knowledge transfer sessions. I enjoy bridging the gap between technical implementation and business needs.</p><p></p><p>I believe in writing clean, maintainable code, understanding systems end-to-end, and continuously learning new technologies to build better software.</p><p></p><p>Core Technologies: React.js, Node.js, JavaScript, TypeScript, Redux, Express.js, SQL, MongoDB, Docker, Kubernetes, Linux, Shell Scripting, REST APIs, Swagger/OpenAPI, Microservices, Monorepo, Git.</p><p></p><p>I'm always interested in connecting with fellow engineers, sharing knowledge, and exploring opportunities to build scalable enterprise applications.</p></div>
+        </section>
+
          
-        
-        
 
         <section>
           <h3>Experience</h3>
@@ -580,7 +761,9 @@ section {
             </div>
 
             
-            <div class="rich-text-content"><p><strong>1. Solumina i-Series (Enterprise Manufacturing Application)</strong></p><ul><li><p>Developed and enhanced enterprise-grade frontend features using React.js.</p></li><li><p>Built and maintained reusable components for the organization's shared component library, improving UI consistency and accelerating feature development.</p></li><li><p>Integrated REST APIs and implemented scalable state management using Redux, Redux Saga, React Context, and Hooks.</p></li><li><p>Worked within a monorepo architecture, collaborating with cross-functional teams to deliver scalable and maintainable solutions.</p></li><li><p>Contributed to improving application performance, code quality, and component reusability.</p></li></ul><p><strong>2. Notification Server &amp; JSReport Server (Node.js Microservices)</strong></p><ul><li><p>Designed, developed, and maintained business-critical Node.js microservices supporting enterprise workflows.</p></li><li><p>Contributed to the architectural design and implementation of scalable backend services.</p></li><li><p>Developed migration scripts to migrate data from MongoDB to SQL while ensuring data integrity and minimal downtime.</p></li><li><p>Implemented Swagger/OpenAPI documentation to improve API usability and simplify integrations.</p></li><li><p>Collaborated with the Cyber Security team to remediate VAPT and Snyk vulnerabilities, enhancing platform security.</p></li><li><p>Deployed and maintained services on on-premises Linux infrastructure using Docker, Kubernetes, and Shell scripting.</p></li><li><p>Supported production deployments, troubleshooting, and continuous platform improvements.</p></li></ul><p><strong>3. Configurator Tool (JSON-Based Dashboard Platform)</strong></p><ul><li><p>Played a key role in designing and developing a JSON-driven dashboard configuration platform.</p></li><li><p>Contributed to the architectural design of the platform to support scalable and configurable enterprise solutions.</p></li><li><p>Developed reusable UI components to accelerate feature delivery and improve maintainability.</p></li><li><p>Collaborated with product and engineering teams to deliver reliable, extensible, and user-centric solutions.</p></li></ul><p><strong>4. Customer Success &amp; Technical Leadership</strong></p><ul><li><p>Serve as the technical owner for the Notification Server, JSReport Server, and Configurator Tool.</p></li><li><p>Work directly with enterprise customers to implement complex JSON-based configurations and resolve production issues.</p></li><li><p>Conduct Knowledge Transfer (KT) sessions and mentor new engineers, enabling faster onboarding and effective knowledge sharing.</p></li><li><p>Collaborate with cross-functional teams to deliver reliable enterprise solutions and continuously improve customer experience.</p></li><li><p>Drive continuous improvements by identifying opportunities to enhance system performance, maintainability, and operational efficiency.</p></li></ul><p></p></div>
+            <div class="rich-text-content">
+              <p><strong>1. Solumina i-Series (Enterprise Manufacturing Application)</strong></p><ul><li><p>Developed and enhanced enterprise-grade frontend features using React.js.</p></li><li><p>Built and maintained reusable components for the organization's shared component library, improving UI consistency and accelerating feature development.</p></li><li><p>Integrated REST APIs and implemented scalable state management using Redux, Redux Saga, React Context, and Hooks.</p></li><li><p>Worked within a monorepo architecture, collaborating with cross-functional teams to deliver scalable and maintainable solutions.</p></li><li><p>Contributed to improving application performance, code quality, and component reusability.</p></li></ul><p><strong>2. Notification Server &amp; JSReport Server (Node.js Microservices)</strong></p><ul><li><p>Designed, developed, and maintained business-critical Node.js microservices supporting enterprise workflows.</p></li><li><p>Contributed to the architectural design and implementation of scalable backend services.</p></li><li><p>Developed migration scripts to migrate data from MongoDB to SQL while ensuring data integrity and minimal downtime.</p></li><li><p>Implemented Swagger/OpenAPI documentation to improve API usability and simplify integrations.</p></li><li><p>Collaborated with the Cyber Security team to remediate VAPT and Snyk vulnerabilities, enhancing platform security.</p></li><li><p>Deployed and maintained services on on-premises Linux infrastructure using Docker, Kubernetes, and Shell scripting.</p></li><li><p>Supported production deployments, troubleshooting, and continuous platform improvements.</p></li></ul><p><strong>3. Configurator Tool (JSON-Based Dashboard Platform)</strong></p><ul><li><p>Played a key role in designing and developing a JSON-driven dashboard configuration platform.</p></li><li><p>Contributed to the architectural design of the platform to support scalable and configurable enterprise solutions.</p></li><li><p>Developed reusable UI components to accelerate feature delivery and improve maintainability.</p></li><li><p>Collaborated with product and engineering teams to deliver reliable, extensible, and user-centric solutions.</p></li></ul><p><strong>4. Customer Success &amp; Technical Leadership</strong></p><ul><li><p>Serve as the technical owner for the Notification Server, JSReport Server, and Configurator Tool.</p></li><li><p>Work directly with enterprise customers to implement complex JSON-based configurations and resolve production issues.</p></li><li><p>Conduct Knowledge Transfer (KT) sessions and mentor new engineers, enabling faster onboarding and effective knowledge sharing.</p></li><li><p>Collaborate with cross-functional teams to deliver reliable enterprise solutions and continuously improve customer experience.</p></li><li><p>Drive continuous improvements by identifying opportunities to enhance system performance, maintainability, and operational efficiency.</p></li></ul><p></p>
+            </div>
              
           </article>
 
@@ -600,7 +783,9 @@ section {
             </div>
 
             
-            <div class="rich-text-content"><p><strong>1. J2 Global (Enterprise Web Platform)</strong></p><ul><li><p>Served as the Lead Full Stack Developer, driving end-to-end feature development across frontend and backend.</p></li><li><p>Designed and developed scalable web applications using <strong>Node.js, React.js, and Redux</strong>.</p></li><li><p>Collaborated with cross-functional teams to deliver high-quality features aligned with business requirements.</p></li><li><p>Integrated REST APIs and implemented reusable, maintainable application components.</p></li><li><p>Mentored team members and participated in code reviews to maintain coding standards and application quality.</p></li></ul><p><strong>2. Catalyst Console (Enterprise Administration Platform)</strong></p><ul><li><p>Led frontend development for a React-based enterprise console, delivering scalable and user-friendly interfaces.</p></li><li><p>Developed reusable React components and implemented efficient state management using Redux.</p></li><li><p>Wrote comprehensive unit tests using <strong>Jest</strong> and <strong>Enzyme</strong>, improving application reliability and reducing regression issues.</p></li><li><p>Built and maintained UI components using <strong>Storybook</strong>, promoting component reusability and design consistency.</p></li><li><p>Worked closely with backend developers, QA teams, and stakeholders to deliver high-quality releases.</p></li></ul><p><strong>3. </strong><a target="_blank" rel="noopener noreferrer nofollow" href="http://Genes2Teens.com"><strong>Genes2Teens.com</strong></a><strong> (Healthcare &amp; Wellness Platform)</strong></p><ul><li><p>Served as the Lead Full Stack Developer, delivering new features across both frontend and backend.</p></li><li><p>Developed responsive user interfaces using <strong>React.js</strong> and implemented backend services with <strong>Node.js</strong>.</p></li><li><p>Designed and integrated REST APIs to enable seamless communication between frontend and backend systems.</p></li><li><p>Optimized application performance and enhanced user experience through clean, maintainable code.</p></li><li><p>Collaborated with stakeholders to translate business requirements into scalable technical solutions.</p></li></ul><p><strong>Core Technologies:</strong> Node.js, React.js, Redux, JavaScript, REST APIs, Jest, Enzyme, Storybook, HTML5, CSS3, Git.</p></div>
+            <div class="rich-text-content">
+              <p><strong>1. J2 Global (Enterprise Web Platform)</strong></p><ul><li><p>Served as the Lead Full Stack Developer, driving end-to-end feature development across frontend and backend.</p></li><li><p>Designed and developed scalable web applications using <strong>Node.js, React.js, and Redux</strong>.</p></li><li><p>Collaborated with cross-functional teams to deliver high-quality features aligned with business requirements.</p></li><li><p>Integrated REST APIs and implemented reusable, maintainable application components.</p></li><li><p>Mentored team members and participated in code reviews to maintain coding standards and application quality.</p></li></ul><p><strong>2. Catalyst Console (Enterprise Administration Platform)</strong></p><ul><li><p>Led frontend development for a React-based enterprise console, delivering scalable and user-friendly interfaces.</p></li><li><p>Developed reusable React components and implemented efficient state management using Redux.</p></li><li><p>Wrote comprehensive unit tests using <strong>Jest</strong> and <strong>Enzyme</strong>, improving application reliability and reducing regression issues.</p></li><li><p>Built and maintained UI components using <strong>Storybook</strong>, promoting component reusability and design consistency.</p></li><li><p>Worked closely with backend developers, QA teams, and stakeholders to deliver high-quality releases.</p></li></ul><p><strong>3. </strong><a target="_blank" rel="noopener noreferrer nofollow" href="http://Genes2Teens.com"><strong>Genes2Teens.com</strong></a><strong> (Healthcare &amp; Wellness Platform)</strong></p><ul><li><p>Served as the Lead Full Stack Developer, delivering new features across both frontend and backend.</p></li><li><p>Developed responsive user interfaces using <strong>React.js</strong> and implemented backend services with <strong>Node.js</strong>.</p></li><li><p>Designed and integrated REST APIs to enable seamless communication between frontend and backend systems.</p></li><li><p>Optimized application performance and enhanced user experience through clean, maintainable code.</p></li><li><p>Collaborated with stakeholders to translate business requirements into scalable technical solutions.</p></li></ul><p><strong>Core Technologies:</strong> Node.js, React.js, Redux, JavaScript, REST APIs, Jest, Enzyme, Storybook, HTML5, CSS3, Git.</p>
+            </div>
              
           </article>
 
@@ -620,7 +805,9 @@ section {
             </div>
 
             
-            <div class="rich-text-content"><p><strong>FirstHandle (Marketing Automation Platform)</strong></p><ul><li><p>Served as a UI Developer, contributing to the development of a marketing automation platform from the ground up.</p></li><li><p>Architected and developed the frontend using React and Redux, establishing a scalable foundation for future product enhancements.</p></li><li><p>Designed and implemented reusable React components and efficient state management, improving application maintainability and performance.</p></li><li><p>Built responsive, interactive user interfaces with a strong focus on usability, scalability, and clean application architecture.</p></li><li><p>Collaborated with backend developers, product managers, and QA teams to deliver high-quality features throughout the software development lifecycle.</p></li></ul><p><strong>WeeGreen Campaign (Marketing Campaign Management Platform)</strong></p><ul><li><p>Developed responsive campaign management interfaces using Angular 4, delivering scalable and user-friendly web applications.</p></li><li><p>Designed and implemented a multi-tenant theming engine using Stylus, Pug, and Jade, enabling configurable client-specific branding and customization.</p></li><li><p>Built reusable UI components and optimized application performance to ensure a consistent user experience across deployments.</p></li><li><p>Worked closely with cross-functional teams to deliver new features, enhancements, and production releases in an Agile environment.</p></li></ul><p><strong>WeeGreen Marketplace (E-commerce Platform)</strong></p><ul><li><p>Developed key marketplace features including catalog upload, catalog download, catalog listing with pagination, and real-time notifications.</p></li><li><p>Built responsive user interfaces using JavaScript, jQuery, HTML5, and CSS3, focusing on performance and usability.</p></li><li><p>Implemented reusable frontend components and contributed to improving application architecture and maintainability.</p></li><li><p>Collaborated with backend engineers and QA teams to deliver scalable e-commerce capabilities and production-ready releases.</p></li></ul><p><strong>WeeGreen Web (Corporate Web Platform)</strong></p><ul><li><p>Contributed to the development and maintenance of the company's web platform, delivering responsive and interactive user interfaces.</p></li><li><p>Implemented frontend features using JavaScript, jQuery, Handlebars, HTML5, and CSS3 while ensuring cross-browser compatibility and performance.</p></li><li><p>Participated in frontend modernization and refactoring initiatives by introducing reusable components and JavaScript best practices.</p></li><li><p>Worked with cross-functional teams to deliver new features, bug fixes, and continuous product improvements.</p></li></ul><p><strong>Core Technologies:</strong> React, Redux, Angular 4, JavaScript, jQuery, HTML5, CSS3, SCSS, Stylus, Pug, Jade, Handlebars, Node.js, Git.</p></div>
+            <div class="rich-text-content">
+              <p><strong>FirstHandle (Marketing Automation Platform)</strong></p><ul><li><p>Served as a UI Developer, contributing to the development of a marketing automation platform from the ground up.</p></li><li><p>Architected and developed the frontend using React and Redux, establishing a scalable foundation for future product enhancements.</p></li><li><p>Designed and implemented reusable React components and efficient state management, improving application maintainability and performance.</p></li><li><p>Built responsive, interactive user interfaces with a strong focus on usability, scalability, and clean application architecture.</p></li><li><p>Collaborated with backend developers, product managers, and QA teams to deliver high-quality features throughout the software development lifecycle.</p></li></ul><p><strong>WeeGreen Campaign (Marketing Campaign Management Platform)</strong></p><ul><li><p>Developed responsive campaign management interfaces using Angular 4, delivering scalable and user-friendly web applications.</p></li><li><p>Designed and implemented a multi-tenant theming engine using Stylus, Pug, and Jade, enabling configurable client-specific branding and customization.</p></li><li><p>Built reusable UI components and optimized application performance to ensure a consistent user experience across deployments.</p></li><li><p>Worked closely with cross-functional teams to deliver new features, enhancements, and production releases in an Agile environment.</p></li></ul><p><strong>WeeGreen Marketplace (E-commerce Platform)</strong></p><ul><li><p>Developed key marketplace features including catalog upload, catalog download, catalog listing with pagination, and real-time notifications.</p></li><li><p>Built responsive user interfaces using JavaScript, jQuery, HTML5, and CSS3, focusing on performance and usability.</p></li><li><p>Implemented reusable frontend components and contributed to improving application architecture and maintainability.</p></li><li><p>Collaborated with backend engineers and QA teams to deliver scalable e-commerce capabilities and production-ready releases.</p></li></ul><p><strong>WeeGreen Web (Corporate Web Platform)</strong></p><ul><li><p>Contributed to the development and maintenance of the company's web platform, delivering responsive and interactive user interfaces.</p></li><li><p>Implemented frontend features using JavaScript, jQuery, Handlebars, HTML5, and CSS3 while ensuring cross-browser compatibility and performance.</p></li><li><p>Participated in frontend modernization and refactoring initiatives by introducing reusable components and JavaScript best practices.</p></li><li><p>Worked with cross-functional teams to deliver new features, bug fixes, and continuous product improvements.</p></li></ul><p><strong>Core Technologies:</strong> React, Redux, Angular 4, JavaScript, jQuery, HTML5, CSS3, SCSS, Stylus, Pug, Jade, Handlebars, Node.js, Git.</p>
+            </div>
              
           </article>
 
@@ -640,7 +827,9 @@ section {
             </div>
 
             
-            <div class="rich-text-content"><p><strong>Adoddle (Enterprise Construction Collaboration Platform)</strong></p><ul><li><p>Served as a Frontend Developer, contributing to the development of an enterprise SaaS platform for construction project collaboration and document management.</p></li><li><p>Developed and maintained core product modules including Projects, Files, Bulk File Upload, Chunked File Upload, Custom File Attributes, and Project Folder Structure Copy.</p></li><li><p>Owned the File Upload with Custom Attributes module, delivering an end-to-end solution that enabled configurable document metadata and improved document organization and searchability.</p></li><li><p>Engineered a reliable chunked file upload mechanism to support large file transfers, enhancing upload stability and overall user experience.</p></li><li><p>Led frontend code refactoring initiatives by introducing reusable components, JavaScript best practices, and design patterns that improved code quality and maintainability.</p></li><li><p>Collaborated with product managers, backend developers, and QA engineers to deliver scalable features, production enhancements, and bug fixes in an Agile environment.</p></li></ul><p><strong>Workflow Management (Business Process Automation)</strong></p><ul><li><p>Developed workflow management capabilities that enabled business process automation and real-time collaboration within the Adoddle platform.</p></li><li><p>Built interactive workflow interfaces using AngularJS and SASS, focusing on usability, scalability, and maintainability.</p></li><li><p>Implemented WebSocket-based real-time communication to synchronize workflow updates instantly across connected users.</p></li><li><p>Developed reusable UI components and optimized application performance while ensuring cross-browser compatibility for enterprise users.</p></li><li><p>Worked closely with cross-functional teams to deliver reliable workflow features that improved operational efficiency and user collaboration.</p></li></ul><p><strong>Core Technologies:</strong> JavaScript, jQuery, AngularJS, HTML5, CSS3, SASS, AJAX, WebSockets, Git.</p></div>
+            <div class="rich-text-content">
+              <p><strong>Adoddle (Enterprise Construction Collaboration Platform)</strong></p><ul><li><p>Served as a Frontend Developer, contributing to the development of an enterprise SaaS platform for construction project collaboration and document management.</p></li><li><p>Developed and maintained core product modules including Projects, Files, Bulk File Upload, Chunked File Upload, Custom File Attributes, and Project Folder Structure Copy.</p></li><li><p>Owned the File Upload with Custom Attributes module, delivering an end-to-end solution that enabled configurable document metadata and improved document organization and searchability.</p></li><li><p>Engineered a reliable chunked file upload mechanism to support large file transfers, enhancing upload stability and overall user experience.</p></li><li><p>Led frontend code refactoring initiatives by introducing reusable components, JavaScript best practices, and design patterns that improved code quality and maintainability.</p></li><li><p>Collaborated with product managers, backend developers, and QA engineers to deliver scalable features, production enhancements, and bug fixes in an Agile environment.</p></li></ul><p><strong>Workflow Management (Business Process Automation)</strong></p><ul><li><p>Developed workflow management capabilities that enabled business process automation and real-time collaboration within the Adoddle platform.</p></li><li><p>Built interactive workflow interfaces using AngularJS and SASS, focusing on usability, scalability, and maintainability.</p></li><li><p>Implemented WebSocket-based real-time communication to synchronize workflow updates instantly across connected users.</p></li><li><p>Developed reusable UI components and optimized application performance while ensuring cross-browser compatibility for enterprise users.</p></li><li><p>Worked closely with cross-functional teams to deliver reliable workflow features that improved operational efficiency and user collaboration.</p></li></ul><p><strong>Core Technologies:</strong> JavaScript, jQuery, AngularJS, HTML5, CSS3, SASS, AJAX, WebSockets, Git.</p>
+            </div>
              
           </article>
 
@@ -651,6 +840,36 @@ section {
 
         <section>
           <h3>Projects</h3>
+
+          
+
+          <article>
+            <h4>J2 Global</h4>
+
+            <p><p>Contributed as a Lead UI Developer in the development and enhancement of enterprise-grade web applications for J2 Global. Owned the implementation of scalable frontend features while collaborating with cross-functional teams to deliver high-quality, maintainable software that supported critical business operations.</p><p><strong>Key Contributions</strong></p><ul><li><p>Led end-to-end feature development using <strong>React.js</strong>, and <strong>Redux</strong>.</p></li><li><p>Designed and implemented scalable frontend modules aligned with business requirements.</p></li><li><p>Developed reusable React components, improving maintainability and accelerating feature delivery.</p></li></ul><ul><li><p>Collaborated closely with product owners, QA engineers, and developers throughout the complete software development lifecycle.</p></li><li><p>Participated in architecture discussions, code reviews, debugging, and production support.</p></li><li><p>Optimized application performance through efficient component design and state management.</p></li></ul><p><strong>Key Highlights</strong></p><ul><li><p>✅ Full Stack Development</p></li><li><p>✅ Enterprise Web Applications</p></li><li><p>✅ REST API Integration</p></li><li><p>✅ Reusable Component Architecture</p></li><li><p>✅ Performance Optimization</p></li><li><p>✅ Agile Development</p></li><li><p>✅ Cross-functional Collaboration</p></li></ul><p></p></p>
+
+            
+          </article>
+
+          
+
+          <article>
+            <h4>Catalyst Console</h4>
+
+            <p><p>Served as the Lead Frontend Developer for Catalyst Console, an enterprise administration platform focused on delivering scalable, reusable, and high-performance user interfaces. Played a key role in improving application quality through component-driven development, comprehensive unit testing, and frontend architecture best practices.</p><p><strong>Key Contributions</strong></p><ul><li><p>Led frontend development using <strong>React.js</strong> and <strong>Redux</strong>, delivering scalable and responsive enterprise interfaces.</p></li><li><p>Designed and developed reusable UI components, improving consistency and reducing development effort.</p></li><li><p>Implemented centralized state management using Redux for predictable application behavior.</p></li><li><p>Developed comprehensive unit tests using <strong>Jest</strong> and <strong>Enzyme</strong>, improving application reliability and reducing regression defects.</p></li><li><p>Built reusable UI components using <strong>Storybook</strong>, enabling faster development and consistent design implementation.</p></li><li><p>Worked closely with backend developers, QA teams, and product owners to deliver high-quality software.</p></li><li><p>Participated in code reviews and established frontend best practices to improve maintainability.</p></li></ul><p><strong>Key Highlights</strong></p><ul><li><p>✅ Frontend Technical Leadership</p></li><li><p>✅ Component-Driven Development</p></li><li><p>✅ Unit Testing (Jest &amp; Enzyme)</p></li><li><p>✅ Storybook Design System</p></li><li><p>✅ Redux Architecture</p></li><li><p>✅ Responsive UI Development</p></li><li><p>✅ Enterprise Application Development</p></li></ul><p></p></p>
+
+            
+          </article>
+
+          
+
+          <article>
+            <h4>Genes2Teens</h4>
+
+            <p><p>Worked as a Lead Full Stack Developer in building a healthcare and wellness platform focused on delivering a seamless digital experience for users. Contributed across the complete application stack, delivering scalable frontend interfaces, backend services, and robust API integrations while collaborating closely with business stakeholders.</p><p><strong>Key Contributions</strong></p><ul><li><p>Led end-to-end feature development using <strong>Node.js</strong>, <strong>React.js</strong>, and <strong>Redux</strong>.</p></li><li><p>Designed and developed responsive user interfaces focused on usability and accessibility.</p></li><li><p>Built backend services and integrated RESTful APIs to support business workflows.</p></li><li><p>Developed reusable frontend components, improving maintainability and accelerating future development.</p></li><li><p>Collaborated with stakeholders to translate functional requirements into scalable technical solutions.</p></li><li><p>Optimized application performance through efficient rendering, API integration, and state management.</p></li><li><p>Participated throughout the software development lifecycle, including requirement analysis, development, testing, deployment, and production support.</p></li></ul><p><strong>Key Highlights</strong></p><ul><li><p>✅ Full Stack Development</p></li><li><p>✅ REST API Development &amp; Integration</p></li><li><p>✅ Reusable Component Architecture</p></li><li><p>✅ Performance Optimization</p></li><li><p>✅ Responsive User Experience</p></li><li><p>✅ Agile Collaboration</p></li><li><p>✅ End-to-End Feature Ownership</p></li></ul><p></p></p>
+
+            
+          </article>
 
           
 
@@ -678,6 +897,26 @@ section {
             <h4>Frontend Modernization & Code Quality Initiative</h4>
 
             <p><p>Initiated and drove frontend code quality improvements across multiple modules to increase maintainability and developer productivity.</p><ul><li><p>Led several code refactoring initiatives by introducing reusable components and modular JavaScript architecture.</p></li><li><p>Applied JavaScript best practices and established design patterns to reduce code duplication and improve readability.</p></li><li><p>Standardized frontend implementation across multiple modules, making future feature development faster and easier.</p></li><li><p>Optimized application performance by identifying bottlenecks and simplifying complex UI logic.</p></li><li><p>Collaborated with team members to promote maintainable coding standards across the project.</p></li></ul><p></p></p>
+
+            
+          </article>
+
+          
+
+          <article>
+            <h4>Adoddle</h4>
+
+            <p><p>Contributed to the development of <strong>Adoddle</strong>, an enterprise construction collaboration and document management platform used by organizations to manage project documents, workflows, and team collaboration. Owned the end-to-end development of the File Upload Module and delivered several enterprise features that streamlined document management and improved productivity for end users.</p><p><strong>Key Contributions</strong></p><ul><li><p>Owned the end-to-end development and enhancement of the <strong>File Upload Module</strong>, delivering scalable and reliable document upload capabilities.</p></li><li><p>Developed <strong>Bulk File Upload</strong> functionality, enabling users to upload multiple documents simultaneously and significantly improving operational efficiency.</p></li><li><p>Implemented <strong>Bulk Upload with Custom Attributes</strong>, allowing users to associate project-specific metadata with uploaded documents during upload.</p></li><li><p>Built <strong>Chunk File Upload</strong> functionality to support reliable uploads of large files over unstable network connections.</p></li><li><p>Developed <strong>Copy Folder Structure</strong>, <strong>Copy/Paste Folder</strong>, and <strong>Copy Project Structure</strong> features, simplifying project setup and reducing repetitive manual effort.</p></li><li><p>Implemented <strong>client-specific themes</strong> using <strong>Stylus</strong>, enabling customized branding while maintaining a single, reusable codebase.</p></li><li><p>Optimized frontend workflows using <strong>jQuery</strong> and <strong>JavaScript</strong>, ensuring responsive user interactions and seamless integration with backend services.</p></li><li><p>Collaborated closely with backend developers, QA engineers, and product stakeholders throughout the complete software development lifecycle.</p></li></ul><p><strong>Key Highlights</strong></p><ul><li><p>✅ Owned the Complete File Upload Module</p></li><li><p>✅ Bulk &amp; Chunk File Upload</p></li><li><p>✅ Enterprise Document Management</p></li><li><p>✅ Folder &amp; Project Structure Automation</p></li><li><p>✅ Multi-client Theme Customization</p></li><li><p>✅ Performance Optimization</p></li><li><p>✅ Cross-functional Collaboration</p></li></ul><p></p></p>
+
+            
+          </article>
+
+          
+
+          <article>
+            <h4>Adoddle Workflows</h4>
+
+            <p><p>Contributed to the development of <strong>Adoddle Workflows</strong>, an enterprise workflow automation platform that enabled organizations to design, manage, and execute configurable business processes. Developed user-centric workflow management features, enhanced application usability, and collaborated with cross-functional teams to deliver scalable solutions for enterprise customers.</p><p><strong>Key Contributions</strong></p><ul><li><p>Developed and enhanced frontend features using <strong>jQuery</strong>, <strong>JavaScript</strong>, <strong>HTML5</strong>, and <strong>CSS3</strong> for an enterprise workflow management platform.</p></li><li><p>Built dynamic and interactive user interfaces to simplify workflow configuration and execution.</p></li><li><p>Implemented configurable business workflows, enabling organizations to automate approval processes and operational tasks.</p></li><li><p>Developed reusable UI components and JavaScript modules to improve maintainability and reduce development effort.</p></li><li><p>Integrated frontend components with backend REST APIs, ensuring seamless data exchange and responsive user interactions.</p></li><li><p>Optimized application performance by improving client-side rendering, event handling, and asynchronous operations.</p></li><li><p>Collaborated closely with backend developers, QA engineers, and product owners to deliver reliable, high-quality features.</p></li><li><p>Participated in requirement analysis, feature implementation, debugging, production support, and continuous application enhancements.</p></li></ul><p><strong>Key Highlights</strong></p><ul><li><p>✅ Enterprise Workflow Automation</p></li><li><p>✅ Dynamic UI Development</p></li><li><p>✅ Business Process Configuration</p></li><li><p>✅ REST API Integration</p></li><li><p>✅ Reusable JavaScript Components</p></li><li><p>✅ Performance Optimization</p></li><li><p>✅ Cross-functional Agile Collaboration</p></li></ul><p></p></p>
 
             
           </article>

@@ -3,11 +3,37 @@ from src.config.db import db
 import bson
 from src.services.projects_services import getProjectsSortedByCompanysJoiningDate
 from src.services.experiences_services import getExperiencesSortedByCompanysJoiningDate
+
 usersCollection = db["user"]
 personalDetailsCollection = db["personal-info"]
 experienceCollection = db["experience"]
 projectsCollection = db["projects"]
 skillsCollection = db["skills"]
+careerHilightsCollection = db["career-highlights"]
+academicsCollection = db["academics"]
+
+
+async def getProfileData(userId: str):
+    personalDetails = await personalDetailsCollection.find_one(
+        {"userId": userId}, {"_id": 0}
+    )
+    skills = await skillsCollection.find_one({"userId": userId}, {"_id": 0})
+    experience = await getExperiencesSortedByCompanysJoiningDate(userId=userId)
+    projects = await getProjectsSortedByCompanysJoiningDate(userId=userId)
+    careerHighlights = await careerHilightsCollection.find_one(
+        {"userId": userId}, {"_id": 0}
+    )
+    academicsData = await academicsCollection.find_one({"userId": userId}, {"_id": 0})
+    profile_data = {
+        "personalDetails": personalDetails,
+        "skills": skills,
+        "experiences": experience,
+        "projects": projects,
+        "careerHighlights": careerHighlights,
+        "currentStatus": experience[0],
+        "academics": academicsData,
+    }
+    return profile_data
 
 
 async def getProfileDataByUserId(userId: str):
@@ -21,25 +47,12 @@ async def getProfileDataByUserId(userId: str):
         )
 
     userDetails["_id"] = str(userDetails["_id"])
-    personalDetails = await personalDetailsCollection.find_one(
-        {"userId": userDetails["_id"]}, {"_id": 0}
-    )
-    skills = await skillsCollection.find_one({"userId": userDetails["_id"]}, {"_id": 0})
-    experience = experienceCollection.find({"userId": userDetails["_id"]}, {"_id": 0})
-    experience = await experience.to_list(length=100)
-    projects = projectsCollection.find({"userId": userDetails["_id"]}, {"_id": 0})
-    projects = await projects.to_list(length=100)
+    profileData = await getProfileData(userId=userDetails["_id"])
+    profileData["userDetails"] = userDetails
+    return profileData
 
-    profile_data = {
-        "userDetails": userDetails,
-        "personalDetails": personalDetails,
-        "skills": skills,
-        "experiences": experience,
-        "projects": projects,
-    }
-    return profile_data
 
-async def getProfileByUserName(userName:str):
+async def getProfileByUserName(userName: str):
     userDetails = await usersCollection.find_one(
         {"userName": userName}, {"password": 0}
     )
@@ -50,20 +63,6 @@ async def getProfileByUserName(userName:str):
         )
 
     userDetails["_id"] = str(userDetails["_id"])
-    personalDetails = await personalDetailsCollection.find_one(
-        {"userId": userDetails["_id"]}, {"_id": 0}
-    )
-    skills = await skillsCollection.find_one({"userId": userDetails["_id"]}, {"_id": 0})
-    # experience = experienceCollection.find({"userId": userDetails["_id"]}, {"_id": 0})
-    # experience = await experience.to_list(length=100)
-    experience = await getExperiencesSortedByCompanysJoiningDate(userId=userDetails["_id"])
-    projects = await getProjectsSortedByCompanysJoiningDate(userId=userDetails["_id"])
-    
-    profile_data = {
-        "userDetails": userDetails,
-        "personalDetails": personalDetails,
-        "skills": skills,
-        "experiences": experience,
-        "projects": projects,
-    }
-    return profile_data
+    profileData = await getProfileData(userId=userDetails["_id"])
+    profileData["userDetails"] = userDetails
+    return profileData

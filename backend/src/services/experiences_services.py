@@ -3,7 +3,7 @@ from datetime import datetime
 
 experiencesCollection = db["experience"]
 async def getExperiencesSortedByCompanysJoiningDate(userId:str):
-    
+    print('called...')
     cursor = experiencesCollection.find({"userId": userId})
     expData = await cursor.to_list(length=1000)
     for exp in expData:

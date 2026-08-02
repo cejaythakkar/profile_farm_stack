@@ -2,7 +2,7 @@ import { Header } from 'shared-component-library';
 import { useMainContext } from '../context/MainContext';
 
 const Navbar = () => {
-  const { user,logoutHandler } = useMainContext();
+  const { user, logoutHandler } = useMainContext();
   const navItems = [
     {
       linkProps: { to: `/${user.userName}/personal-info` },
@@ -29,6 +29,18 @@ const Navbar = () => {
       show: user['_id'],
     },
     {
+      linkProps: { to: `/${user.userName}/career-highlights` },
+      key: `/${user.userName}/career-highlights`,
+      text: 'Career Highlights',
+      show: user['_id'],
+    },
+    {
+      linkProps: { to: `/${user.userName}/academics` },
+      key: `/${user.userName}/academics`,
+      text: 'Academics',
+      show: user['_id'],
+    },
+    {
       linkProps: {
         to: `/register`,
         replace: true,
@@ -47,7 +59,13 @@ const Navbar = () => {
       show: !user['_id'],
     },
   ];
-  return <Header navItems={navItems} user={user['_id']} logoutHandler={logoutHandler} />;
+  return (
+    <Header
+      navItems={navItems}
+      user={user['_id']}
+      logoutHandler={logoutHandler}
+    />
+  );
 };
 
 export default Navbar;

@@ -9,6 +9,8 @@ from src.routes.PersonalDetails import route as personalDetails_route
 from src.routes.ProfileRoute import route as profile_route
 from src.routes.ProjectsRoute import route as projects_route
 from src.routes.ResumeRouter import router as resume_route
+from src.routes.CareerHighlightsRoute import route as career_highlights_route
+from src.routes.AcademicsRoute import route as academics_route
 from dotenv import load_dotenv
 import os
 import json
@@ -54,3 +56,5 @@ server.include_router(experience_route)
 server.include_router(personalDetails_route)
 server.include_router(profile_route)
 server.include_router(projects_route)
+server.include_router(career_highlights_route)
+server.include_router(academics_route)

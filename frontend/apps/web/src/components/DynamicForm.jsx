@@ -11,6 +11,7 @@ const DynamicForm = ({
   widthFull = false,
   showActionButtons = true,
   modalForm = true,
+  mainContentClasses=''
 }) => {
   return (
     <Formik
@@ -28,12 +29,12 @@ const DynamicForm = ({
         >
           {loading && <FormSpinner />}
           <div
-            className={`${showActionButtons ? 'h-[80%]' : 'h-full'} flex border bg-gray-900 border-gray-500 shadow flex-col  overflow-auto px-5 py-5`}
+            className={`${showActionButtons ? 'h-[80%]' : 'h-full'} flex border bg-gray-900 border-gray-500 shadow flex-col  overflow-auto px-5 py-5 ${mainContentClasses}`}
           >
             {children}
           </div>
           {showActionButtons && (
-            <div className="h-[10%] footer bg-gray-500 flex justify-end gap-x-4 box-border px-5 items-center">
+            <div className="h-[10%] footer bg-gray-500 flex justify-end gap-x-4 box-border px-5 items-center py-3">
               {/* <FormComponents.Button text="Update" type="submit" /> */}
               <FormComponents.ButtonWithSpinner
                 text="Update"

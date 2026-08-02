@@ -184,7 +184,7 @@ const PersonalInfo = () => {
                   </div>
                 </FormSection>
                 <FieldArray name="contactDetails">
-                  {({ insert, remove, push }) => (
+                  {({ remove, push }) => (
                     <FormSection
                       title="Contact Details"
                       remove={remove}

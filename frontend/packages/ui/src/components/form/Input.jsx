@@ -12,16 +12,18 @@ const Input = ({
   required = false,
   noLabel = false,
   hideHandler = () => {},
+  containerClasses = '',
+  classes = '',
 }) => {
   return (
-    <div className="mb-3">
+    <div className={`mb-3 ${containerClasses}`}>
       {!noLabel && <Label name={name} text={text} required={required} />}
       <Field
         id={name}
         name={name}
         type={type}
         autocomplete="off"
-        className="w-full py-4 px-3 rounded border outline-none transition-all duration-300 border-gray-400 focus:ring-1 h-[50px] box-border text-white"
+        className={`w-full py-4 px-3 rounded border outline-none transition-all duration-300 border-gray-400 focus:ring-1 h-[50px] box-border text-white ${classes}`}
         placeholder={placeholder}
       />
       <InputFieldError name={name} />

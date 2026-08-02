@@ -29,6 +29,9 @@ async def generateResume(profile):
         skills=profile["skills"],
         experiences=profile["experiences"],
         projects=profile["projects"],
+        careerHighlights=profile["careerHighlights"],
+        currentStatus=profile["currentStatus"],
+        academics=profile["academics"],
         profile=profile,
         css=css,
     )

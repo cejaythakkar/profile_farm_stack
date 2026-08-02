@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import PersonalInfo from './pages/PersonalInfo';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
@@ -11,6 +11,8 @@ import ProfilePage from './pages/ProfilePage';
 import SkillsPage from './pages/SkillsPage';
 import ProjectsPage from './pages/ProjectsPage';
 import ExperiencePage from './pages/ExperiencePage';
+import CareerHighlightsPage from './pages/CareerHighlightsPage';
+import AcademicsPage from './pages/AcademicsPage';
 import MainLayout from './layout/MainLayout';
 
 const checkServerHealth = async () => {
@@ -19,18 +21,21 @@ const checkServerHealth = async () => {
 };
 
 const App = () => {
+  // const location = useLocation();
   useEffect(() => {
-    const handleBrowserClose = () => {
-      // Clear your tokens securely
-      localStorage.removeItem('token');
-    };
+    // const handleBrowserClose = () => {
+    //   // Clear your tokens securely
+    //   console.log('location.pathname.indexOf(profile) == -1', location.pathname.indexOf('profile') == -1)
+    //   if (location.pathname.indexOf('profile') == -1)
+    //     localStorage.removeItem('token');
+    // };
     checkServerHealth();
-    window.addEventListener('beforeunload', handleBrowserClose);
+    // window.addEventListener('beforeunload', handleBrowserClose);
 
-    // Clean up the event listener if the component re-renders
-    return () => {
-      window.removeEventListener('beforeunload', handleBrowserClose);
-    };
+    // // Clean up the event listener if the component re-renders
+    // return () => {
+    //   window.removeEventListener('beforeunload', handleBrowserClose);
+    // };
   }, []);
   return (
     <>
@@ -46,19 +51,14 @@ const App = () => {
                 />
                 <Route path="/:userName/skills" Component={SkillsPage} />
                 <Route path="/:userName/projects" Component={ProjectsPage} />
+                <Route path="/:userName/career-highlights" Component={CareerHighlightsPage} />
+                <Route path="/:userName/academics" Component={AcademicsPage} />
                 <Route
                   path="/:userName/experience"
                   Component={ExperiencePage}
                 />
               </Route>
-              {/* <Route  path="/" Component={ProtectedLayout}>
-                <Route index Component={HomePage} />
-              </Route> */}
-
-              {/* <Route  path="/:userName/personal-info" Component={ProtectedLayout}>
-                <Route index Component={PersonalInfo} />
-                </Route> */}
-
+            
               <Route path="/login" Component={LoginPage} />
               <Route path="/register" Component={RegisterPage} />
             </Route>
