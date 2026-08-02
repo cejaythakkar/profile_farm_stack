@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import DynamicForm from '../../components/DynamicForm';
 import { FormSpinner, FormComponents } from 'shared-component-library';
 import { useFormikContext } from 'formik';
@@ -7,6 +7,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { setFormSubmit } from '../../store/uiSlice';
 import axiosClient from '../../utils/axiosClient';
 import { toast } from 'react-toastify';
+import { fetchCareerHighlightsData } from '../../store/careerHighlightsSlice';
 
 const initialData = {
   title: [],
@@ -14,6 +15,7 @@ const initialData = {
 };
 const Form = () => {
   const { values, setFieldValue } = useFormikContext();
+
   return (
     <>
       <div className="w-full px-3 mb-3">
@@ -38,10 +40,14 @@ const Form = () => {
 const CareerHighlights = () => {
   const dispatch = useDispatch();
   const dataLoading = useSelector((state) => state.ui.dataLoading);
-  ;
+  const summary = useSelector((state) => state.highlights.summary);
+  const title = useSelector((state) => state.highlights.title);
+  useEffect(() => {
+    dispatch(fetchCareerHighlightsData());
+  }, [dispatch]);
   return (
     <DynamicForm
-      initialValues={initialData}
+      initialValues={{ title, summary }}
       showActionButtons={true}
       mainContentClasses="max-h-[500px]"
       validationSchema={yup.object().shape({})}
@@ -57,6 +63,7 @@ const CareerHighlights = () => {
         dispatch(setFormSubmit(false));
       }}
     >
+      {dataLoading && <FormSpinner />}
       <Form />
     </DynamicForm>
   );

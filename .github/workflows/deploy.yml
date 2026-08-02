@@ -27,17 +27,17 @@ jobs:
             git reset --hard origin/main
             git pull "$REAL_URL" main
 
-            # Write secrets cleanly without quotes around EOF and with NO leading spaces
-            cat << EOF > .env
-            MONGO_URI="${{ secrets.MONGO_URI }}"
-            ALLOWED_ORIGIN="${{ secrets.ALLOWED_ORIGIN }}"
-            DB_NAME="${{ secrets.DB_NAME }}"
-            REDIS_HOST="${{ secrets.REDIS_HOST }}"
-            JWT_AUTH_SECRET="${{ secrets.JWT_AUTH_SECRET }}"
-            CLOUDINARY_CLOUD_NAME="${{ secrets.CLOUDINARY_CLOUD_NAME }}"
-            CLOUDINARY_API_KEY="${{ secrets.CLOUDINARY_API_KEY }}"
-            CLOUDINARY_API_SECRET="${{ secrets.CLOUDINARY_API_SECRET }}"
-            VITE_APP_BACKEND_URI="${{ secrets.VITE_APP_BACKEND_URI }}"
+            # Write secrets cleanly to your host environment file
+            cat << 'EOF' > .env
+            MONGO_URI=${{ secrets.MONGO_URI }}
+            ALLOWED_ORIGIN=${{ secrets.ALLOWED_ORIGIN }}
+            DB_NAME=${{ secrets.DB_NAME }}
+            REDIS_HOST=${{ secrets.REDIS_HOST }}
+            JWT_AUTH_SECRET=${{ secrets.JWT_AUTH_SECRET }}
+            CLOUDINARY_CLOUD_NAME=${{ secrets.CLOUDINARY_CLOUD_NAME }}
+            CLOUDINARY_API_KEY=${{ secrets.CLOUDINARY_API_KEY }}
+            CLOUDINARY_API_SECRET=${{ secrets.CLOUDINARY_API_SECRET }}
+            VITE_APP_BACKEND_URI=${{ secrets.VITE_APP_BACKEND_URI }}
             EOF
 
             # Wipe old container states and build the stack fresh

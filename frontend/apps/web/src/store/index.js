@@ -3,6 +3,7 @@ import uiSliceReducer from './uiSlice'
 import experienceSliceReducer from './experienceSlice'
 import projectsSliceReducer from './projectsSlice'
 import academicsSliceReducer from './academicsSlice'
+import careerHighlightsSliceReducer from './careerHighlightsSlice'
 
 const store = configureStore({
     reducer: {
@@ -10,6 +11,7 @@ const store = configureStore({
         experience: experienceSliceReducer,
         projects: projectsSliceReducer,
         academics: academicsSliceReducer,
+        highlights: careerHighlightsSliceReducer
     }
 })
 

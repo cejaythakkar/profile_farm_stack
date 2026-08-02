@@ -25,12 +25,12 @@ async def addUpdateCareerHighlights(careerhighlightsData: CareerHighlightsModel,
 
 
 @route.get("/")
-async def addSkills(userId=Depends(get_current_user)):
+async def getCareerHighlightsData(userId=Depends(get_current_user)):
 
-    skillsData = await careerHilightsCollection.find_one({"userId": userId})
-    skillsData["_id"] = str(skillsData["_id"])
+    careerHighlightsData = await careerHilightsCollection.find_one({"userId": userId})
+    careerHighlightsData["_id"] = str(careerHighlightsData["_id"])
     response = get_response_object(
-        message="skills fetch successfull!", success=True, token=False
+        message="Career Highlights fetch successfull!", success=True, token=False
     )
-    response["data"] = skillsData
+    response["data"] = careerHighlightsData
     return response
