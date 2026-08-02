@@ -157,7 +157,7 @@ const AddUpdateProjectForm = ({
             initialValues={defaultFormState}
             validationSchema={yup.object().shape({})}
             submitHandler={async (values) => {
-              console.log('values', values)
+              
               
               let success = false;
               let successMessage = editMode
@@ -170,7 +170,7 @@ const AddUpdateProjectForm = ({
                   : await axiosClient.post('/projects', values);
                 success = true;
               } catch (e) {
-                console.log('e', e);
+                ;
               } finally {
                 dispatch(setFormSubmit(false));
                 dispatch(fetchProjects());

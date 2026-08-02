@@ -29,7 +29,7 @@ const RegisterPage = () => {
   };
 
   const onSubmithandler = async (values, helpers) => {
-    console.log('register page on submit');
+    ;
     try {
       setIsLoading(true);
       const response = await axiosClient.post('/auth/register', values);

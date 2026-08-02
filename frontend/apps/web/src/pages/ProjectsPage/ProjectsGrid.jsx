@@ -204,7 +204,7 @@ const ProjectsGrid = ({ actionButtonClickHandler }) => {
                 const formikIndex = values.projects.findIndex(
                   (item) => item.id === params.row.id,
                 );
-                console.log('params', params);
+                ;
                 if (formikIndex !== -1) {
                   actionButtonClickHandler(params.row, 'update');
                   dispatch(setSelectedProject(params.row));
@@ -228,7 +228,7 @@ const ProjectsGrid = ({ actionButtonClickHandler }) => {
               name="delete"
               iconName="delete"
               clickHandler={() => {
-                console.log('params', params)
+                
                 dispatch(deleteProject({ projectId: params.row.id }));
               }}
             />

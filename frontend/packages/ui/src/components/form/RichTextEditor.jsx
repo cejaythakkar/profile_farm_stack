@@ -3,7 +3,7 @@ import StarterKit from '@tiptap/starter-kit';
 import { useEffect } from 'react';
 
 export default function CompleteStickyEditor({ innerRef, onChange }) {
-  console.log('name', name);
+  ;
   const editor = useEditor({
     extensions: [StarterKit],
     content: ``,

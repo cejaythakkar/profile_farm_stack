@@ -25,7 +25,7 @@ const App = () => {
   useEffect(() => {
     // const handleBrowserClose = () => {
     //   // Clear your tokens securely
-    //   console.log('location.pathname.indexOf(profile) == -1', location.pathname.indexOf('profile') == -1)
+    //   
     //   if (location.pathname.indexOf('profile') == -1)
     //     localStorage.removeItem('token');
     // };

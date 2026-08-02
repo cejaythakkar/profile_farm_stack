@@ -1,5 +1,8 @@
 import { useEffect, useState } from 'react';
 import axiosClient from '../../utils/axiosClient';
+import { FormComponents } from 'shared-component-library';
+import { setFormSubmit } from '../../store/uiSlice';
+import { useSelector, useDispatch } from 'react-redux';
 
 const quotes = [
   'Building scalable applications one commit at a time.',
@@ -10,6 +13,8 @@ const quotes = [
 
 const HeroSection = ({ personalDetails, userName, title, currentStatus }) => {
   const [quote, setQuote] = useState(quotes[0]);
+  const formLoading = useSelector((state) => state.ui.formSubmit);
+  const dispatch = useDispatch();
   useEffect(() => {
     const timer = setInterval(() => {
       setQuote(quotes[Math.floor(Math.random() * quotes.length)]);
@@ -141,20 +146,17 @@ const HeroSection = ({ personalDetails, userName, title, currentStatus }) => {
         gap-4
       "
         >
-          <button
-            href="#projects"
-            className="
-          px-6
-          py-3
-          rounded-lg
-          bg-green-600
-          hover:bg-green-700
-          transition
-          font-medium
-          cursor-pointer
-        "
-            onClick={async () => {
+          <FormComponents.ButtonWithSpinner
+            text={'Download CV'}
+            color="green"
+            loading={formLoading}
+            disabled={formLoading}
+            name={'downloadResume'}
+            type="button"
+            classes="px-6 py-3 rounded-lg"
+            clickHandler={async () => {
               try {
+                dispatch(setFormSubmit(true));
                 // 1. Force Axios to receive raw binary blob chunks instead of JSON/text
                 const response = await axiosClient.get(`/resume/${userName}`, {
                   responseType: 'blob',
@@ -180,6 +182,7 @@ const HeroSection = ({ personalDetails, userName, title, currentStatus }) => {
                 // 5. Clean up memory allocations by destroying the ghost link elements
                 hiddenLink.parentNode.removeChild(hiddenLink);
                 window.URL.revokeObjectURL(downloadUrl);
+                dispatch(setFormSubmit(false));
               } catch (error) {
                 console.error('PDF download execution routine failed:', error);
                 alert(
@@ -189,7 +192,7 @@ const HeroSection = ({ personalDetails, userName, title, currentStatus }) => {
             }}
           >
             Download CV
-          </button>
+          </FormComponents.ButtonWithSpinner>
           <a
             href="#projects"
             className="

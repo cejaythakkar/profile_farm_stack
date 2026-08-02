@@ -117,12 +117,12 @@ const SkillsPage = () => {
           value: skill,
         })),
       }));
-      console.log('transformedSkillData', transformedSkillData);
+      ;
       setUserSkills({ skills: transformedSkillData });
     };
     fetchSkills();
   }, []);
-  console.log('userSkills', userSkills);
+  ;
   return (
     <DynamicForm
       initialValues={userSkills}

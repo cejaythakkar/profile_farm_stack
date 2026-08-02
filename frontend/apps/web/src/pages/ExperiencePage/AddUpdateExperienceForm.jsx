@@ -98,7 +98,7 @@ const AddUpdateExperienceForm = ({
         initialValues={defaultFormState}
         validationSchema={yup.object().shape({})}
         submitHandler={async (values) => {
-          // console.log(values)
+          // 
           let success = false;
           let successMessage = editMode
             ? 'Experience Updated Successfully'
@@ -111,7 +111,7 @@ const AddUpdateExperienceForm = ({
             await new Promise((resolve) => setTimeout(resolve, 2000));
             success = true;
           } catch (e) {
-            console.log('e', e);
+            ;
           } finally {
             dispatch(setFormSubmit(false));
             dispatch(fetchExperience());

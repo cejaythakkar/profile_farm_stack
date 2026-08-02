@@ -144,7 +144,7 @@ const ExperienceGrid = ({ remove, actionButtonClickHandler }) => {
     ],
     [values.experiences, handleChange, setFieldValue, remove],
   );
-  console.log('values.experiences', values.experiences)
+  
   return (
     <div>
       <DataGrid columns={columns} data={values.experiences} />

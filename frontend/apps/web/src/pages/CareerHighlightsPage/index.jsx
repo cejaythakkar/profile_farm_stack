@@ -38,7 +38,7 @@ const Form = () => {
 const CareerHighlights = () => {
   const dispatch = useDispatch();
   const dataLoading = useSelector((state) => state.ui.dataLoading);
-  console.log('dataLoading', dataLoading);
+  ;
   return (
     <DynamicForm
       initialValues={initialData}

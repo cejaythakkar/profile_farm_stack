@@ -81,7 +81,7 @@ const Academics = () => {
   const dataLoading = useSelector((state) => state.ui.dataLoading);
   const formSubmit = useSelector((state) => state.ui.formSubmit);
   const academics = useSelector((state) => state.academics.academicsData);
-  console.log('dataLoading', dataLoading);
+  ;
 
   useEffect(() => {
     dispatch(fetchAcademicsData());

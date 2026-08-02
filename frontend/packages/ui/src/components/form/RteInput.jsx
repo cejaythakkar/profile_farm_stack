@@ -17,7 +17,7 @@ const RteInput = ({
   innerRef = null,
   onChange = () => {},
 }) => {
-  console.log('text', text)
+  
   return (
     <div className="mb-3">
       {!noLabel && <Label name={name} text={text} required={required} />}
