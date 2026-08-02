@@ -36,6 +36,7 @@ const HeroSection = ({ personalDetails, userName, title, currentStatus }) => {
         md:w-40 md:h-40
         rounded-full
         object-cover
+        object-top
         border-4
         border-white
         shadow-2xl
